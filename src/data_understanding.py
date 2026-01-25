@@ -152,3 +152,33 @@ materials_df['CO2_Impact_Index'] = (
 # Preview
 print("\nCO2 Impact Index preview:")
 print(materials_df[['CO2_Emission_kg', 'Biodegradable', 'CO2_Impact_Index']].head())
+
+
+# =========================
+# FEATURE ENGINEERING
+# STEP 2: Cost Efficiency Index
+# =========================
+
+# Normalize Cost_per_kg (lower cost = better)
+materials_df['Cost_Normalized'] = (
+    materials_df['Cost_per_kg'] - materials_df['Cost_per_kg'].min()
+) / (
+    materials_df['Cost_per_kg'].max() - materials_df['Cost_per_kg'].min()
+)
+
+# Normalize Tensile_Strength_MPa (higher strength = better)
+materials_df['Strength_Normalized'] = (
+    materials_df['Tensile_Strength_MPa'] - materials_df['Tensile_Strength_MPa'].min()
+) / (
+    materials_df['Tensile_Strength_MPa'].max() - materials_df['Tensile_Strength_MPa'].min()
+)
+
+# Cost Efficiency Index
+# Higher value = more cost efficient
+materials_df['Cost_Efficiency_Index'] = (
+    materials_df['Strength_Normalized'] * (1 - materials_df['Cost_Normalized'])
+)
+
+# Preview
+print("\nCost Efficiency Index preview:")
+print(materials_df[['Cost_per_kg', 'Tensile_Strength_MPa', 'Cost_Efficiency_Index']].head())
