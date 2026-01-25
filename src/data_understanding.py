@@ -56,3 +56,16 @@ history_df.drop_duplicates(inplace=True)
 # Count duplicates after removal
 duplicates_after = history_df.duplicated().sum()
 print(f"Duplicate rows after removal: {duplicates_after}")
+
+
+# =========================
+# DATA CLEANING - STEP 4
+# Basic data validation
+# =========================
+
+# Check for negative values
+print("\nNegative value check:")
+
+print("Negative Distance_km:", (history_df['Distance_km'] < 0).sum())
+print("Negative Cost_USD:", (history_df['Cost_USD'] < 0).sum())
+print("Negative CO2_Emission_kg:", (history_df['CO2_Emission_kg'] < 0).sum())
