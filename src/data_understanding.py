@@ -39,3 +39,20 @@ history_df['Packaging_Used'].fillna(
 
 print("\nMissing values after cleaning:")
 print(history_df.isnull().sum())
+
+
+# =========================
+# DATA CLEANING - STEP 3
+# Remove duplicate rows
+# =========================
+
+# Count duplicates before removal
+duplicates_before = history_df.duplicated().sum()
+print(f"\nDuplicate rows before removal: {duplicates_before}")
+
+# Remove duplicates
+history_df.drop_duplicates(inplace=True)
+
+# Count duplicates after removal
+duplicates_after = history_df.duplicated().sum()
+print(f"Duplicate rows after removal: {duplicates_after}")
