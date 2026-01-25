@@ -108,3 +108,23 @@ materials_df['Biodegradable'].fillna(
 
 print("\nMissing values in materials dataset after cleaning:")
 print(materials_df.isnull().sum())
+
+
+
+# =========================
+# MATERIALS DATASET CLEANING
+# STEP 3: Encode categorical values
+# =========================
+
+# Encode Biodegradable: Yes -> 1, No -> 0
+materials_df['Biodegradable'] = materials_df['Biodegradable'].map({
+    'Yes': 1,
+    'No': 0
+})
+
+# Encode Category using label encoding
+materials_df['Category_Encoded'] = materials_df['Category'].astype('category').cat.codes
+
+# Display encoded columns
+print("\nEncoded materials dataset preview:")
+print(materials_df[['Category', 'Category_Encoded', 'Biodegradable']].head())
