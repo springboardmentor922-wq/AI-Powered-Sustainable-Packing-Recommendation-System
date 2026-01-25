@@ -128,3 +128,27 @@ materials_df['Category_Encoded'] = materials_df['Category'].astype('category').c
 # Display encoded columns
 print("\nEncoded materials dataset preview:")
 print(materials_df[['Category', 'Category_Encoded', 'Biodegradable']].head())
+
+
+
+# =========================
+# FEATURE ENGINEERING
+# STEP 1: CO2 Impact Index
+# =========================
+
+# Normalize CO2 emissions (0 to 1 scale)
+materials_df['CO2_Emission_Normalized'] = (
+    materials_df['CO2_Emission_kg'] - materials_df['CO2_Emission_kg'].min()
+) / (
+    materials_df['CO2_Emission_kg'].max() - materials_df['CO2_Emission_kg'].min()
+)
+
+# CO2 Impact Index
+# Higher value = worse environmental impact
+materials_df['CO2_Impact_Index'] = (
+    materials_df['CO2_Emission_Normalized'] * (1 - materials_df['Biodegradable'])
+)
+
+# Preview
+print("\nCO2 Impact Index preview:")
+print(materials_df[['CO2_Emission_kg', 'Biodegradable', 'CO2_Impact_Index']].head())
