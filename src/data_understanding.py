@@ -182,3 +182,28 @@ materials_df['Cost_Efficiency_Index'] = (
 # Preview
 print("\nCost Efficiency Index preview:")
 print(materials_df[['Cost_per_kg', 'Tensile_Strength_MPa', 'Cost_Efficiency_Index']].head())
+
+
+
+# =========================
+# FEATURE ENGINEERING
+# STEP 3: Material Suitability Score
+# =========================
+
+# Inverse CO2 impact (lower CO2 impact = better)
+materials_df['CO2_Impact_Inverse'] = 1 - materials_df['CO2_Impact_Index']
+
+# Material Suitability Score
+materials_df['Material_Suitability_Score'] = (
+    0.4 * materials_df['CO2_Impact_Inverse'] +
+    0.4 * materials_df['Cost_Efficiency_Index'] +
+    0.2 * materials_df['Strength_Normalized']
+)
+
+# Preview top materials
+print("\nTop 5 materials by suitability score:")
+print(
+    materials_df[['Material_Name', 'Material_Suitability_Score']]
+    .sort_values(by='Material_Suitability_Score', ascending=False)
+    .head()
+)
