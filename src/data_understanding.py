@@ -69,3 +69,42 @@ print("\nNegative value check:")
 print("Negative Distance_km:", (history_df['Distance_km'] < 0).sum())
 print("Negative Cost_USD:", (history_df['Cost_USD'] < 0).sum())
 print("Negative CO2_Emission_kg:", (history_df['CO2_Emission_kg'] < 0).sum())
+
+
+
+# =========================
+# MATERIALS DATASET CLEANING
+# STEP 1: Check missing values
+# =========================
+
+print("\nMissing values in materials dataset:")
+print(materials_df.isnull().sum())
+
+
+# =========================
+# MATERIALS DATASET CLEANING
+# STEP 2: Handle missing values
+# =========================
+
+# Fill missing numerical values with mean
+material_numerical_cols = [
+    'Density_kg_m3',
+    'Tensile_Strength_MPa',
+    'CO2_Emission_kg',
+    'Cost_per_kg'
+]
+
+for col in material_numerical_cols:
+    materials_df[col].fillna(materials_df[col].mean(), inplace=True)
+
+# Fill missing categorical values with mode
+materials_df['Category'].fillna(
+    materials_df['Category'].mode()[0], inplace=True
+)
+
+materials_df['Biodegradable'].fillna(
+    materials_df['Biodegradable'].mode()[0], inplace=True
+)
+
+print("\nMissing values in materials dataset after cleaning:")
+print(materials_df.isnull().sum())
