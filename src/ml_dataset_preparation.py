@@ -72,3 +72,24 @@ print("y_cost_train:", y_cost_train.shape)
 print("y_cost_test:", y_cost_test.shape)
 print("y_co2_train:", y_co2_train.shape)
 print("y_co2_test:", y_co2_test.shape)
+
+
+
+from sklearn.preprocessing import StandardScaler
+
+# =========================
+# ML DATASET PREPARATION
+# STEP 5: Feature Scaling
+# =========================
+
+scaler = StandardScaler()
+
+# Fit scaler on training data
+X_train_scaled = scaler.fit_transform(X_train)
+
+# Transform test data
+X_test_scaled = scaler.transform(X_test)
+
+# Verify scaling
+print("\nScaled feature sample (first 5 rows):")
+print(X_train_scaled[:5])
