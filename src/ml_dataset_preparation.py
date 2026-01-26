@@ -44,3 +44,31 @@ y_co2 = history_df['CO2_Emission_kg']
 print("\nFeature matrix shape (X):", X.shape)
 print("Cost target shape (y_cost):", y_cost.shape)
 print("CO2 target shape (y_co2):", y_co2.shape)
+
+
+
+from sklearn.model_selection import train_test_split
+
+# =========================
+# ML DATASET PREPARATION
+# STEP 4: Train-Test Split
+# =========================
+
+# Split for cost prediction
+X_train, X_test, y_cost_train, y_cost_test = train_test_split(
+    X, y_cost, test_size=0.2, random_state=42
+)
+
+# Split for CO2 prediction (use same X split)
+_, _, y_co2_train, y_co2_test = train_test_split(
+    X, y_co2, test_size=0.2, random_state=42
+)
+
+# Verify shapes
+print("\nTrain-test split shapes:")
+print("X_train:", X_train.shape)
+print("X_test:", X_test.shape)
+print("y_cost_train:", y_cost_train.shape)
+print("y_cost_test:", y_cost_test.shape)
+print("y_co2_train:", y_co2_train.shape)
+print("y_co2_test:", y_co2_test.shape)
