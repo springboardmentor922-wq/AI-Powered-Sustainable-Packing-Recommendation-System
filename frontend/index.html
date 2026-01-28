@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EcoPackAI – Sustainable Packaging Recommendation</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container py-4">
+
+<h1 class="text-center text-success mb-2">🌱 EcoPackAI</h1>
+<p class="text-center">AI-Powered Sustainable Packaging Recommendation System</p>
+
+<div class="card shadow p-4 mb-4">
+<h4>Product Details</h4>
+
+<div class="row g-3 mt-2">
+<div class="col-md-6">
+<input id="product" class="form-control" placeholder="Product name (e.g., Lipstick, Toy)">
+</div>
+
+<div class="col-md-6">
+<input id="weight" class="form-control" placeholder="Product weight (kg)">
+</div>
+
+<div class="col-md-4">
+<input id="length" class="form-control" placeholder="Length (cm)">
+</div>
+
+<div class="col-md-4">
+<input id="breadth" class="form-control" placeholder="Breadth (cm)">
+</div>
+
+<div class="col-md-4">
+<input id="height" class="form-control" placeholder="Height (cm)">
+</div>
+</div>
+
+<button onclick="recommendProduct()" class="btn btn-success mt-3">
+Get Packaging Recommendation
+</button>
+
+<div id="output" class="alert alert-info mt-3 d-none"></div>
+</div>
+
+</div>
+
+<script>
+const API_URL = "http://127.0.0.1:5000";
+
+function recommendProduct() {
+
+const data = {
+product_name: document.getElementById("product").value,
+length: document.getElementById("length").value,
+breadth: document.getElementById("breadth").value,
+height: document.getElementById("height").value,
+weight: document.getElementById("weight").value
+};
+
+fetch(API_URL + "/product-recommend", {
+method: "POST",
+headers: {"Content-Type": "application/json"},
+body: JSON.stringify(data)
+})
+.then(res => res.json())
+.then(result => {
+
+let html = `
+<b>Product:</b> ${result.product}<br>
+<b>Surface Area:</b> ${result.surface_area_cm2.toFixed(2)} cm²
+<b>Top Sustainable Packaging Recommendations:</b><hr>
+`;
+
+result.recommendations.forEach((item, i) => {
+html += `
+<b>${i+1}. ${item.material_type}</b><br>
+AI Score: ${item.ai_recommendation_score.toFixed(3)} |
+Cost: ${item.predicted_cost.toFixed(3)} |
+CO₂: ${item.predicted_co2.toFixed(3)}<br>
+Strength: ${item.tensile_strength_mpa.toFixed(2)} |
+Capacity: ${item.weight_capacity_kg.toFixed(2)} kg |
+Recyclability: ${(item.recyclability_percentage*100).toFixed(1)}% |
+Biodegradability: ${item.biodegradability_score.toFixed(2)}
+<hr>`;
+});
+
+const box = document.getElementById("output");
+box.classList.remove("d-none");
+box.innerHTML = html;
+
+});
+}
+</script>
+
+</body>
+</html>
