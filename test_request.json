@@ -1,0 +1,11 @@
+{
+  "item_name": "iPhone 15",
+  "product_category": "Electronics",
+  "material_type": "Cardboard",
+  "product_weight": 2.5,
+  "fragility": "Medium",
+  "required_strength": 70,
+  "shipping_distance": "Regional",
+  "top_n": 3,
+  "prioritize": "balanced"
+}

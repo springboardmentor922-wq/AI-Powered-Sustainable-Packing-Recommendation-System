@@ -1,0 +1,11 @@
+material_name,material_type,strength,cost_per_unit,co2_emission_score,biodegradability,recyclability,environmental_score,cost_efficiency_index,co2_impact_index,material_suitability_score
+Cardboard Box,Cardboard,70,2.5,25,90,95,85,28.0,67.5,118.8
+Plastic Container,Plastic,85,3.8,75,10,70,35,22.4,11.7,44.1
+Biodegradable Wrap,Biodegradable,60,4.2,15,95,80,90,14.3,76.0,102.0
+Paper Bag,Paper,45,1.8,20,85,90,80,25.0,72.0,81.0
+Foam Padding,Foam,30,2.1,60,5,20,25,14.3,8.0,12.0
+Wooden Crate,Wood,90,8.5,40,75,85,70,10.6,52.5,94.5
+Metal Can,Metal,95,5.2,80,0,95,40,18.3,7.5,38.0
+Glass Jar,Glass,80,4.8,30,0,100,50,16.7,60.0,80.0
+Corrugated Cardboard,Cardboard,75,3.2,22,92,96,88,23.4,70.4,132.0
+Recycled Plastic,Plastic,78,3.5,65,15,75,45,22.3,16.5,58.5
