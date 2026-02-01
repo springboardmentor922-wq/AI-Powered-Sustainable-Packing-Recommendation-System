@@ -1,0 +1,255 @@
+EcoPackAI – Dataset Description
+=====================================================================
+
+Project Overview
+----------------
+EcoPackAI is an end-to-end data engineering, analytics, and decision-intelligence
+project focused on sustainable packaging optimization. The system transforms
+historical shipment data and a comprehensive materials master catalog into
+actionable insights, recommendations, and sustainability intelligence.
+
+A key challenge addressed is that only ~10 out of ~600 available packaging
+materials have been historically used, while the remaining materials represent
+prototype, optional, or future-ready alternatives. EcoPackAI bridges this gap
+using fuzzy material mapping, feature engineering, and sustainability scoring.
+
+Motto:
+Transform historical data into actionable insights across all materials.
+
+Key Objectives:
+- Normalize and enrich shipment data with material intelligence
+- Compare actual usage vs full materials catalog
+- Identify cost- and CO₂-reduction opportunities
+- Enable future-facing recommendations for sustainable materials
+- Preserve unknowns for informed decision-making instead of discarding them
+
+---------------------------------------------------------------------
+DATASETS
+---------------------------------------------------------------------
+
+1. Materials Reference Dataset
+------------------------------
+File Name:
+clean_materials.csv
+
+Role:
+Canonical master/reference dataset for packaging materials.
+This dataset defines the universe of all possible materials that can be used
+for packaging, regardless of whether they appear in historical shipments.
+
+Entity:
+One row = One packaging material
+
+Rows:
+~600
+
+Columns:
+8
+
+Purpose:
+- Source of truth for material properties
+- Used for enrichment, analytics, and recommendations
+- Core vocabulary for mapping free-text packaging names from shipment data
+
+Columns Description:
+
+1. material_id
+   - Unique identifier for each packaging material
+   - Range: 1 to 602
+   - Primary key for material-level analysis
+
+2. material_name
+   - Scientific or standardized material name
+   - Often longer and more technical
+   - Core keywords from this field appear in shipment "packaging_used"
+
+3. category
+   - High-level material category
+   - Examples: eco-paper, bio-plastic, glass, wood, metal
+   - Used for aggregation and category-level insights
+
+4. density_kg_m3
+   - Material density in kilograms per cubic meter
+   - Important for weight, cost, and CO₂ calculations
+
+5. tensile_strength_MPa
+   - Tensile strength in megapascals
+   - Proxy for material durability and protection capability
+
+6. cost_per_kg
+   - Cost of the material per kilogram
+   - Used to calculate packaging cost efficiency
+
+7. co2_emission_kg
+   - CO₂ emitted per kilogram of material produced/used
+   - Used in environmental impact analysis
+
+8. biodegradable
+   - Indicates whether the material is biodegradable
+   - Values: YES / NO
+   - Key sustainability indicator
+
+---------------------------------------------------------------------
+
+2. Final Enriched Shipment Dataset
+----------------------------------
+File Name:
+final_ecopack_dataset_fe.csv
+
+Role:
+Fact dataset representing real shipment orders enriched with material,
+environmental, economic, and engineered sustainability features.
+
+Entity:
+One row = One shipment/order
+
+Rows:
+~15,000
+
+Columns:
+27+
+
+Purpose:
+- Business intelligence dashboards
+- Sustainability analysis
+- Recommendation engine training
+- Scenario simulation and decision support
+
+---------------------------------------------------------------------
+CORE SHIPMENT ATTRIBUTES (FROM HISTORY)
+---------------------------------------------------------------------
+
+1. category
+   - Category of the product ordered by the customer
+   - Represents shipment/order classification
+
+2. weight_kg
+   - Actual physical weight of the shipped item (kg)
+
+3. volumetric_weight_kg
+   - Volumetric weight used in logistics pricing
+   - Accounts for package size, not just mass
+
+4. item_volume
+   - Volume of the shipped item
+   - Used to estimate required packaging material quantity
+
+5. fragility
+   - Fragility score of the item
+   - Scale: 1 (robust) to 10 (highly fragile)
+
+6. moisture_sensitivity
+   - Indicates if item is sensitive to moisture
+   - Values: TRUE / FALSE
+
+7. shipping_mode
+   - Mode of transport
+   - Examples: air, road
+
+8. distance_km
+   - Distance traveled by the shipment (kilometers)
+
+9. packaging_used
+   - Free-text description of packaging used in the shipment
+   - Non-normalized and not directly joinable to materials master
+   - Used as input for fuzzy matching
+
+10. cost_usd
+    - Actual packaging cost incurred for the shipment
+
+11. co2_emission_kg_item
+    - CO₂ emissions associated with the shipment and packaging
+    - Based on distance, material, and order characteristics
+
+---------------------------------------------------------------------
+MATERIAL MAPPING & ENRICHMENT
+---------------------------------------------------------------------
+
+12. material_id
+    - Resolved material identifier used to join with materials master
+    - Created via fuzzy string matching
+    - Ensures MANY shipments map to ONE material
+
+13. material_name
+    - Scientific material name from materials master
+    - Added after successful mapping
+
+14. category_material
+    - Material category from materials master
+    - Used for sustainability and cost aggregation
+
+15. density_kg_m3
+    - Density of the mapped packaging material
+
+16. tensile_strength_MPa
+    - Tensile strength of the mapped material
+
+17. cost_per_kg
+    - Cost per kg of the packaging material
+
+18. co2_emission_kg_material
+    - CO₂ emitted per kg of packaging material used
+    - Scaled based on order volume and weight
+
+19. biodegradable
+    - Indicates whether the packaging material is biodegradable
+
+Unmapped / Unknown Materials:
+- Explicitly assigned new Resolved_Material_IDs
+- Preserved for decision support and future analysis
+- Not dropped or imputed
+
+---------------------------------------------------------------------
+ENGINEERED SUSTAINABILITY FEATURES
+---------------------------------------------------------------------
+
+20. co2_impact_index
+    - Normalized score (0–100)
+    - Higher value = lower CO₂ impact
+
+21. cost_efficiency_index
+    - Strength-to-cost efficiency metric
+    - Normalized (0–100)
+    - Rewards durable yet cost-effective materials
+
+22. environmental_impact_score
+    - Composite score based on:
+      - CO₂ emissions
+      - Biodegradability
+    - Higher = better environmental performance
+
+23. material_sustainability_score
+    - Composite index combining:
+      - Cost efficiency
+      - CO₂ impact
+      - Material strength
+    - Used for ranking materials
+
+24. sustainability
+    - Final normalized sustainability score
+    - Range: 0 to 1
+
+25. sustainability_rating
+    - Letter-grade representation of sustainability
+    - Scale: A+ (best) to F (worst)
+
+---------------------------------------------------------------------
+KEY INSIGHTS ENABLED BY THIS DATA
+---------------------------------------------------------------------
+
+- Identification of over-reliance on a small subset of materials
+- Discovery of unused materials with superior sustainability profiles
+- Cost vs CO₂ trade-off analysis at shipment and material level
+- Scenario simulation for replacing existing packaging
+- Forward-looking recommendations beyond historical usage
+
+---------------------------------------------------------------------
+KEY TAKEAWAY
+---------------------------------------------------------------------
+
+EcoPackAI converts fragmented logistics and material data into a unified,
+intelligent sustainability platform. By preserving historical truth while
+unlocking the full materials catalog, it enables data-driven, future-ready
+packaging decisions that balance cost, performance, and environmental impact.
+
+// localhost:3000 frontend correctly call localhost:5000 backend with sessions, recommendations, and PDF.

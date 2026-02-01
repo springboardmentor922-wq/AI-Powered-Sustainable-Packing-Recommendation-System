@@ -1,0 +1,603 @@
+Material_ID,Material_Name,Category,Density_kg_m3,Tensile_Strength_MPa,Cost_per_kg,CO2_Emission_kg,Biodegradable
+1,Recycled Palm Leaf,Eco,489,13.19,1.06,0.235,Yes
+2,Waterproof Palm Leaf,Eco,561,15.29,1.47,0.449,Yes
+3,Single-Ply Kraft Paper,Paper,742,36.08,0.91,0.742,Yes
+4,Single-Ply Aluminum Foil,Metal,2506,32.48,3.3,11.137,No
+5,Fire-Retardant Nylon Fabric,Plastic,1323,69.04,4.71,6.8,No
+6,Commercial-Grade Recycled Denim,Eco,287,4.78,1.61,0.573,Yes
+7,Food-Grade Polycarbonate,Plastic,1142,61.84,4,3.615,No
+8,Lightweight PET Plastic,Plastic,1082,43.14,0.97,1.941,No
+9,Single-Ply Borosilicate Glass,Glass,1957,40.95,2.34,0.965,No
+10,Food-Grade Mushroom Mycelium,Eco,146,0.78,5.1,0.486,Yes
+11,Laminated PVC Film,Plastic,1469,55.48,2.59,3.339,No
+12,Lightweight Plywood,Wood,515,31.71,2.23,0.535,Yes
+13,Food-Grade Wax Paper,Paper,892,14.86,1.78,1.09,Yes
+14,Double-Wall Cornstarch Foam,Eco,61,0.92,3.25,1.708,Yes
+15,Insulated PLA Bioplastic,Eco,627,36.4,4.53,2.184,Yes
+16,UV-Stabilized Polyurethane Foam,Plastic,29,0.53,2.31,3.497,No
+17,Laminated Plywood,Wood,716,48.08,3.51,0.781,Yes
+18,Medical-Grade PLA Bioplastic,Eco,1191,69.14,8.07,2.074,Yes
+19,Perforated Aluminum Foil,Metal,2471,36.6,4.47,12.2,No
+20,Recycled Seaweed Film,Eco,1089,14,3.73,0.124,Yes
+21,Industrial-Grade Plywood,Wood,684,45.92,2.63,0.631,Yes
+22,Reinforced Polypropylene (PP),Plastic,1068,51.62,1.79,2.271,No
+23,Woven Palm Leaf,Eco,534,18.95,1.52,0.428,Yes
+24,Commercial-Grade Cornstarch Foam,Eco,40,0.5,2.1,1.2,Yes
+25,Perforated Seaweed Film,Eco,963,12.23,4.49,0.204,Yes
+26,Insulated Acrylic Sheet,Plastic,606,43.1,4.11,4.31,No
+27,Laminated Hemp Composite,Eco,1236,61.29,4.15,1.328,Yes
+28,Perforated Hemp Composite,Eco,1029,41.56,3.31,1.039,Yes
+29,Lightweight Hemp Composite,Eco,886,40.25,2.63,0.906,Yes
+30,Food-Grade Aluminum Foil,Metal,2752,45.87,6.12,12.231,No
+31,Food-Grade HDPE Container,Plastic,911,23.98,1.87,1.822,No
+32,Food-Grade ABS Plastic,Plastic,991,38.12,2.86,2.954,No
+33,UV-Stabilized Hemp Composite,Eco,1064,53.21,3.93,1.161,Yes
+34,Standard Bubble Wrap (LDPE),Plastic,890,9.68,2.13,2.807,No
+35,Waterproof Polyurethane Foam,Plastic,34,0.51,2.07,3.356,No
+36,Lightweight Kraft Paper,Paper,631,39.44,0.98,0.71,Yes
+37,Perforated ABS Plastic,Plastic,912,31.19,2.14,3.022,No
+38,Lightweight Jute Burlap,Eco,1059,24.43,1.1,0.458,Yes
+39,Single-Ply Polycarbonate,Plastic,1042,43.9,2.16,3.3,No
+40,Food-Grade Acrylic Sheet,Plastic,1222,72.5,3.88,3.625,No
+41,Lightweight ABS Plastic,Plastic,829,31.9,1.79,2.781,No
+42,Commercial-Grade Molded Pulp,Paper,293,1.95,1.02,0.683,Yes
+43,Industrial-Grade PVC Film,Plastic,1415,53.43,1.96,2.721,No
+44,Laminated Seaweed Film,Eco,1166,18.17,5.65,0.262,Yes
+45,Industrial-Grade HDPE Container,Plastic,1052,30.21,1.44,2.105,No
+46,Standard Recycled Denim,Eco,286,4.76,1.52,0.572,Yes
+47,Standard Tin Plate,Metal,7547,192.29,1.73,7.692,No
+48,Woven HDPE Container,Plastic,1016,31.59,1.64,2.032,No
+49,Commercial-Grade Jute Burlap,Eco,1245,28.73,1.21,0.479,Yes
+50,Double-Wall Polyurethane Foam,Plastic,46,0.92,2.79,4.306,No
+51,Perforated Cork Sheet,Wood,218,4.04,4.45,0.303,Yes
+52,Recycled Plywood,Wood,640,35.44,2.21,0.354,Yes
+53,Medical-Grade Bubble Wrap (LDPE),Plastic,908,11.85,6.52,3.436,No
+54,Single-Ply Teflon Coating,Plastic,2074,18.33,6.7,7.542,No
+55,Heavy-Duty Steel Strap,Metal,10304,569.05,1.71,2.439,No
+56,Food-Grade Jute Burlap,Eco,1303,30.07,1.8,0.501,Yes
+57,Heavy-Duty Hardboard,Wood,1214,43.59,2.62,0.872,Yes
+58,Industrial-Grade Corrugated Cardboard,Paper,688,7.5,0.92,1.031,Yes
+59,Lightweight Corrugated Cardboard,Paper,498,4.98,0.75,0.84,Yes
+60,Waterproof Styrofoam (EPS),Plastic,28,0.4,1.81,3.651,No
+61,Anti-Static Polyurethane Foam,Plastic,30,0.49,2.35,3.254,No
+62,Medical-Grade Steel Strap,Metal,7562,465.34,3.49,2.327,No
+63,Medical-Grade Glass Jar,Glass,2590,62.17,4.66,0.995,No
+64,Waterproof Bagasse (Sugarcane),Eco,130,19.73,1.78,0.325,Yes
+65,Industrial-Grade Hemp Composite,Eco,1160,57.53,3.06,1.055,Yes
+66,Recycled Bagasse (Sugarcane),Eco,118,17.68,1.33,0.177,Yes
+67,Fire-Retardant Polycarbonate,Plastic,1281,69.37,4.08,4.793,No
+68,Single-Ply Pine Wood Crate,Wood,467,25.43,1.66,0.467,Yes
+69,Anti-Static Bubble Wrap (LDPE),Plastic,912,9.91,3.05,3.162,No
+70,Commercial-Grade Plywood,Wood,673,41.44,2.72,0.622,Yes
+71,Reinforced PET Plastic,Plastic,1584,78.93,1.37,2.315,No
+72,Insulated Steel Strap,Metal,4084,251.3,2.01,2.513,No
+73,Heavy-Duty PVC Film,Plastic,1693,63.11,2.52,3.005,No
+74,Anti-Static PET Plastic,Plastic,1415,56.41,1.58,2.482,No
+75,Anti-Static Tin Plate,Metal,8207,209.1,2.63,9.201,No
+76,Waterproof Tissue Paper,Paper,281,1.02,1.84,0.899,Yes
+77,Waterproof Cork Sheet,Wood,271,5.14,4.93,0.339,Yes
+78,UV-Stabilized Kraft Paper,Paper,801,55.06,1.54,0.961,Yes
+79,Medical-Grade Borosilicate Glass,Glass,2190,70.72,8.84,1.297,No
+80,Laminated PET Plastic,Plastic,1444,62.8,1.47,2.721,No
+81,Lightweight Polypropylene (PP),Plastic,729,28.19,1.27,1.903,No
+82,Woven Hardboard,Wood,942,37.12,2.23,0.733,Yes
+83,UV-Stabilized Bamboo Sheet,Wood,723,51.12,3.04,0.744,Yes
+84,Perforated Wax Paper,Paper,824,12.21,1.34,1.12,Yes
+85,Reinforced Polycarbonate,Plastic,1475,99.84,3.73,4.28,No
+86,Medical-Grade Corrugated Cardboard,Paper,603,7.24,2.41,1.086,Yes
+87,Waterproof Pine Wood Crate,Wood,542,34.46,2.36,0.542,Yes
+88,Double-Wall PVC Film,Plastic,2034,84.51,3,3.652,No
+89,Lightweight Seaweed Film,Eco,819,11.7,3.51,0.175,Yes
+90,Perforated Corrugated Cardboard,Paper,565,5.02,0.92,0.942,Yes
+91,Lightweight Molded Pulp,Paper,242,1.61,0.91,0.636,Yes
+92,Medical-Grade Bagasse (Sugarcane),Eco,118,23.66,4.44,0.355,Yes
+93,Fire-Retardant Mushroom Mycelium,Eco,171,0.91,5.43,0.672,Yes
+94,Reinforced Sheep Wool,Eco,1506,14.48,4.01,0.531,Yes
+95,Laminated HDPE Container,Plastic,1002,28.75,1.74,2.367,No
+96,Waterproof Nylon Fabric,Plastic,1328,62.97,3.78,5.772,No
+97,Standard Teflon Coating,Plastic,2169,24.65,7.89,7.889,No
+98,Laminated PLA Bioplastic,Eco,1408,74.31,4.05,2.415,Yes
+99,Single-Ply Corrugated Cardboard,Paper,539,4.19,0.64,0.808,Yes
+100,Woven Recycled Denim,Eco,346,6.82,2.18,0.692,Yes
+101,Commercial-Grade Mushroom Mycelium,Eco,149,0.8,3.65,0.497,Yes
+102,Lightweight Recycled Denim,Eco,243,4.04,1.46,0.546,Yes
+103,Woven Aluminum Foil,Metal,3009,59.27,5.27,13.374,No
+104,Waterproof Seaweed Film,Eco,1167,15.15,4.85,0.222,Yes
+105,Woven Styrofoam (EPS),Plastic,27,0.52,1.93,3.6,No
+106,Double-Wall HDPE Container,Plastic,1482,46.81,2.16,2.767,No
+107,Medical-Grade Hardboard,Wood,925,36.99,5.55,0.863,Yes
+108,Insulated Cotton Canvas,Eco,725,23.19,3.4,1.74,Yes
+109,Heavy-Duty Mushroom Mycelium,Eco,188,1.08,4.73,0.579,Yes
+110,Reinforced Tin Plate,Metal,9193,292.78,2.28,8.588,No
+111,Commercial-Grade HDPE Container,Plastic,915,24.08,1.31,1.83,No
+112,Standard Bamboo Sheet,Wood,703,45.21,2.11,0.603,Yes
+113,Lightweight Wax Paper,Paper,731,12.19,1.1,1.005,Yes
+114,Woven Corrugated Cardboard,Paper,653,7.71,1.03,0.979,Yes
+115,Standard Kraft Paper,Paper,826,51.65,1.14,0.826,Yes
+116,Fire-Retardant PLA Bioplastic,Eco,1354,65.5,4.17,2.322,Yes
+117,Lightweight Tissue Paper,Paper,199,0.8,1.35,0.718,Yes
+118,Industrial-Grade Wax Paper,Paper,973,17.68,1.3,1.189,Yes
+119,Perforated Polypropylene (PP),Plastic,826,28.4,1.56,2.13,No
+120,Insulated Jute Burlap,Eco,627,17.36,1.85,0.579,Yes
+121,Commercial-Grade ABS Plastic,Plastic,1045,40.2,2.11,3.115,No
+122,Laminated Bamboo Sheet,Wood,803,56.31,3.07,0.813,Yes
+123,Lightweight Bagasse (Sugarcane),Eco,94,15.72,1.33,0.265,Yes
+124,Medical-Grade Tin Plate,Metal,7722,236.1,5.31,9.444,No
+125,Fire-Retardant Recycled Denim,Eco,325,5.41,2.36,0.768,Yes
+126,Commercial-Grade Pine Wood Crate,Wood,509,35.62,2.14,0.509,Yes
+127,Recycled Hemp Composite,Eco,1138,46.55,2.7,0.621,Yes
+128,Reinforced HDPE Container,Plastic,1130,37.16,1.67,2.071,No
+129,Standard Jute Burlap,Eco,1301,30.02,1.2,0.5,Yes
+130,Laminated Aluminum Foil,Metal,2838,51.6,5.35,14.907,No
+131,Double-Wall Styrofoam (EPS),Plastic,36,0.69,2.31,4.446,No
+132,Double-Wall Wax Paper,Paper,1407,28.13,2,1.605,Yes
+133,Waterproof Balsa Wood,Wood,184,10.46,4.39,0.46,Yes
+134,Standard Polyurethane Foam,Plastic,29,0.48,1.64,2.902,No
+135,Heavy-Duty Sheep Wool,Eco,1676,13.88,4.44,0.595,Yes
+136,Reinforced Acrylic Sheet,Plastic,1448,107.38,3.32,3.937,No
+137,Heavy-Duty Seaweed Film,Eco,1420,21.84,5.82,0.25,Yes
+138,Heavy-Duty Cotton Canvas,Eco,1863,53.49,2.94,1.719,Yes
+139,Lightweight Aluminum Foil,Metal,2144,35.73,3.57,10.718,No
+140,Single-Ply Tin Plate,Metal,6972,138.16,1.42,7.105,No
+141,Medical-Grade Kraft Paper,Paper,831,62.31,3.43,0.997,Yes
+142,UV-Stabilized Cornstarch Foam,Eco,42,0.57,2.91,1.498,Yes
+143,Insulated Recycled Denim,Eco,149,2.98,2.54,0.714,Yes
+144,Woven Hemp Composite,Eco,1192,64.03,3.71,1.084,Yes
+145,Reinforced Seaweed Film,Eco,1264,22.56,5.21,0.221,Yes
+146,UV-Stabilized PVC Film,Plastic,1289,49.07,2.5,2.974,No
+147,UV-Stabilized PET Plastic,Plastic,1443,63.27,1.61,2.761,No
+148,Laminated Teflon Coating,Plastic,2467,30.58,11.42,10.602,No
+149,Industrial-Grade Polyurethane Foam,Plastic,32,0.58,1.8,3.182,No
+150,Insulated Sheep Wool,Eco,634,5.85,4.99,0.585,Yes
+151,Waterproof Plywood,Wood,727,40.68,3.05,0.671,Yes
+152,Heavy-Duty Teflon Coating,Plastic,2924,35.78,11.45,9.815,No
+153,Woven Bagasse (Sugarcane),Eco,136,26.82,2.01,0.34,Yes
+154,Single-Ply Hardboard,Wood,784,20.33,1.39,0.61,Yes
+155,Heavy-Duty Hemp Composite,Eco,1443,70.61,4.1,1.211,Yes
+156,Lightweight PVC Film,Plastic,1070,37.03,1.67,2.314,No
+157,Heavy-Duty Palm Leaf,Eco,618,19.98,1.6,0.457,Yes
+158,Double-Wall Polycarbonate,Plastic,1741,113.19,4.33,5.147,No
+159,Insulated Molded Pulp,Paper,152,1.22,1.62,0.853,Yes
+160,Lightweight HDPE Container,Plastic,732,19.26,1.13,1.646,No
+161,Fire-Retardant Bubble Wrap (LDPE),Plastic,1030,11.19,3.36,3.835,No
+162,Heavy-Duty Styrofoam (EPS),Plastic,33,0.58,2.16,4.07,No
+163,Reinforced Plywood,Wood,751,57.76,3.13,0.635,Yes
+164,Double-Wall Molded Pulp,Paper,452,3.61,1.61,0.984,Yes
+165,UV-Stabilized Aluminum Foil,Metal,2832,51.91,5.87,15.102,No
+166,Insulated Bubble Wrap (LDPE),Plastic,472,6.16,3.61,3.57,No
+167,Waterproof Polycarbonate,Plastic,1254,61.76,3.19,3.972,No
+168,Fire-Retardant Tin Plate,Metal,9049,230.54,2.83,10.898,No
+169,Fire-Retardant Hardboard,Wood,952,31.72,2.6,0.875,Yes
+170,Waterproof Tin Plate,Metal,8682,201.08,2.17,8.847,No
+171,Single-Ply HDPE Container,Plastic,865,17.71,1.05,1.73,No
+172,UV-Stabilized Plywood,Wood,670,45.37,3.61,0.742,Yes
+173,Commercial-Grade PVC Film,Plastic,1255,43.45,1.83,2.414,No
+174,Waterproof Jute Burlap,Eco,1458,30.59,1.47,0.561,Yes
+175,UV-Stabilized Jute Burlap,Eco,1283,32.58,1.66,0.592,Yes
+176,Double-Wall Corrugated Cardboard,Paper,924,11.09,1.31,1.294,Yes
+177,Laminated Cotton Canvas,Eco,1672,48.64,3.12,1.976,Yes
+178,Commercial-Grade Bubble Wrap (LDPE),Plastic,889,9.67,2.23,2.803,No
+179,Recycled Sheep Wool,Eco,1249,8.65,2.77,0.288,Yes
+180,Recycled Steel Strap,Metal,7882,363.79,1.09,1.213,No
+181,Waterproof Bubble Wrap (LDPE),Plastic,1061,10.48,2.77,3.343,No
+182,UV-Stabilized Teflon Coating,Plastic,2168,27.1,11.04,9.462,No
+183,Food-Grade Sheep Wool,Eco,1304,10.03,4.81,0.501,Yes
+184,Woven Sheep Wool,Eco,1447,13.16,4.21,0.557,Yes
+185,Recycled Borosilicate Glass,Glass,2209,53.5,2.68,0.654,No
+186,Fire-Retardant PVC Film,Plastic,1499,51.89,2.83,3.407,No
+187,Heavy-Duty Cornstarch Foam,Eco,52,0.7,2.81,1.448,Yes
+188,Fire-Retardant Kraft Paper,Paper,894,55.86,1.68,1.056,Yes
+189,Industrial-Grade Polypropylene (PP),Plastic,980,41.36,1.52,2.275,No
+190,Food-Grade Bamboo Sheet,Wood,698,44.87,3.14,0.598,Yes
+191,UV-Stabilized Tissue Paper,Paper,245,1.08,2.06,0.942,Yes
+192,UV-Stabilized Steel Strap,Metal,7715,435.23,1.66,2.374,No
+193,Woven PVC Film,Plastic,1373,56.16,2.25,2.64,No
+194,Perforated Hardboard,Wood,812,24.07,1.99,0.702,Yes
+195,Fire-Retardant Cork Sheet,Wood,270,5.62,6.13,0.398,Yes
+196,Waterproof Cornstarch Foam,Eco,45,0.51,2.47,1.357,Yes
+197,Commercial-Grade PLA Bioplastic,Eco,1228,59.4,2.91,1.782,Yes
+198,Industrial-Grade Pine Wood Crate,Wood,567,43.32,2.27,0.567,Yes
+199,Food-Grade Polyurethane Foam,Plastic,31,0.52,2.67,3.137,No
+200,Anti-Static Pine Wood Crate,Wood,509,35.65,2.85,0.56,Yes
+201,Single-Ply Bagasse (Sugarcane),Eco,108,13.95,1.2,0.269,Yes
+202,Industrial-Grade Mushroom Mycelium,Eco,167,0.97,3.89,0.555,Yes
+203,Waterproof Aluminum Foil,Metal,2832,42.9,4.58,12.585,No
+204,Anti-Static Balsa Wood,Wood,157,9.8,4.8,0.431,Yes
+205,Industrial-Grade Aluminum Foil,Metal,2977,54.13,4.41,13.232,No
+206,Heavy-Duty Nylon Fabric,Plastic,1562,87.76,4.39,6.269,No
+207,Reinforced Balsa Wood,Wood,183,14.27,4.33,0.418,Yes
+208,Medical-Grade Teflon Coating,Plastic,2150,29.32,23.46,9.383,No
+209,Laminated Styrofoam (EPS),Plastic,28,0.49,2.14,4.382,No
+210,Laminated Cork Sheet,Wood,256,5.81,5.43,0.378,Yes
+211,Perforated Acrylic Sheet,Plastic,1060,55.91,2.75,3.494,No
+212,Industrial-Grade PET Plastic,Plastic,1592,69.23,1.27,2.539,No
+213,Insulated Cork Sheet,Wood,115,2.87,6.13,0.345,Yes
+214,Medical-Grade Seaweed Film,Eco,1089,18.66,12.44,0.249,Yes
+215,Heavy-Duty Acrylic Sheet,Plastic,1589,101.54,3.63,4.352,No
+216,Perforated Recycled Denim,Eco,258,3.82,1.68,0.573,Yes
+217,Fire-Retardant Styrofoam (EPS),Plastic,27,0.43,2.21,4.211,No
+218,Heavy-Duty Bubble Wrap (LDPE),Plastic,1225,14.34,3.15,3.565,No
+219,Waterproof Borosilicate Glass,Glass,2532,61.93,3.72,1.249,No
+220,Laminated Nylon Fabric,Plastic,1316,74.88,4.37,6.76,No
+221,Standard Cotton Canvas,Eco,1469,39.16,2.15,1.469,Yes
+222,Medical-Grade Aluminum Foil,Metal,2830,56.61,12.58,15.096,No
+223,Recycled Balsa Wood,Wood,156,8.76,3.06,0.234,Yes
+224,Heavy-Duty ABS Plastic,Plastic,1302,53.92,2.7,3.582,No
+225,Industrial-Grade Seaweed Film,Eco,1126,17.55,4.29,0.215,Yes
+226,Laminated Bubble Wrap (LDPE),Plastic,1003,11.89,3.05,3.736,No
+227,Single-Ply Wax Paper,Paper,786,10.18,0.93,0.96,Yes
+228,Laminated Molded Pulp,Paper,319,2.32,1.35,0.88,Yes
+229,Food-Grade PLA Bioplastic,Eco,1196,57.88,4.05,1.736,Yes
+230,Food-Grade Polypropylene (PP),Plastic,933,36.07,2.16,2.164,No
+231,Single-Ply Plywood,Wood,602,28.83,2.06,0.556,Yes
+232,Anti-Static Sheep Wool,Eco,1360,10.46,4.69,0.575,Yes
+233,Double-Wall Palm Leaf,Eco,721,25.95,1.85,0.538,Yes
+234,Industrial-Grade Bamboo Sheet,Wood,786,55.11,2.36,0.674,Yes
+235,Industrial-Grade Sheep Wool,Eco,1459,12.25,3.59,0.561,Yes
+236,Insulated Polypropylene (PP),Plastic,465,21.58,2.3,2.59,No
+237,Reinforced Jute Burlap,Eco,1589,45.83,1.59,0.56,Yes
+238,Lightweight Styrofoam (EPS),Plastic,19,0.31,1.3,2.859,No
+239,Double-Wall Steel Strap,Metal,11721,721.29,1.92,2.805,No
+240,Food-Grade Corrugated Cardboard,Paper,579,5.79,1.16,0.869,Yes
+241,Woven Polypropylene (PP),Plastic,1007,46.01,1.84,2.336,No
+242,Fire-Retardant Bamboo Sheet,Wood,770,49.53,3.15,0.78,Yes
+243,Waterproof PLA Bioplastic,Eco,1331,58.56,3.28,1.932,Yes
+244,Recycled Polyurethane Foam,Plastic,30,0.45,1.52,1.786,No
+245,Standard Glass Jar,Glass,2449,48.99,1.47,0.784,No
+246,UV-Stabilized Tin Plate,Metal,8236,230.81,2.64,10.072,No
+247,Insulated Palm Leaf,Eco,239,8.61,1.84,0.459,Yes
+248,Standard Corrugated Cardboard,Paper,591,5.91,0.79,0.886,Yes
+249,Recycled Bubble Wrap (LDPE),Plastic,928,9.08,2,1.756,No
+250,Insulated Aluminum Foil,Metal,1343,26.86,6.37,14.326,No
+251,Perforated Cornstarch Foam,Eco,36,0.4,2.21,1.206,Yes
+252,Heavy-Duty Recycled Denim,Eco,374,6.71,2.15,0.69,Yes
+253,Lightweight Mushroom Mycelium,Eco,124,0.66,3.26,0.465,Yes
+254,Anti-Static Polypropylene (PP),Plastic,925,35.77,2,2.361,No
+255,Commercial-Grade Seaweed Film,Eco,1057,15.1,4.23,0.201,Yes
+256,Single-Ply Nylon Fabric,Plastic,1082,43.91,2.51,4.705,No
+257,Food-Grade Bubble Wrap (LDPE),Plastic,888,9.65,3.18,2.798,No
+258,Reinforced Nylon Fabric,Plastic,1447,94.35,4.09,5.766,No
+259,Anti-Static Wax Paper,Paper,883,14.72,1.65,1.188,Yes
+260,Fire-Retardant Polypropylene (PP),Plastic,993,38.42,2.1,2.724,No
+261,Anti-Static Bagasse (Sugarcane),Eco,119,19.87,2.09,0.328,Yes
+262,Industrial-Grade PLA Bioplastic,Eco,1385,73.08,3.13,2.01,Yes
+263,Insulated Styrofoam (EPS),Plastic,13,0.25,2.49,4.103,No
+264,Heavy-Duty Bagasse (Sugarcane),Eco,156,27.97,2.1,0.36,Yes
+265,Double-Wall Glass Jar,Glass,3716,89.19,2.38,1.11,No
+266,Reinforced Recycled Denim,Eco,364,7.59,2.1,0.668,Yes
+267,Single-Ply Palm Leaf,Eco,453,10.56,0.97,0.362,Yes
+268,Standard Steel Strap,Metal,7967,408.56,1.23,2.043,No
+269,Single-Ply Balsa Wood,Wood,139,6.76,2.7,0.348,Yes
+270,Woven Molded Pulp,Paper,319,2.51,1.26,0.744,Yes
+271,Insulated Tin Plate,Metal,3761,114.99,2.76,9.199,No
+272,Reinforced Cornstarch Foam,Eco,49,0.76,2.64,1.341,Yes
+273,UV-Stabilized PLA Bioplastic,Eco,1179,62.75,3.73,2.054,Yes
+274,UV-Stabilized Mushroom Mycelium,Eco,154,0.9,5.04,0.617,Yes
+275,Food-Grade Pine Wood Crate,Wood,521,36.48,3.13,0.521,Yes
+276,Commercial-Grade Cotton Canvas,Eco,1466,39.09,2.26,1.466,Yes
+277,Anti-Static Seaweed Film,Eco,1005,14.35,5.36,0.211,Yes
+278,Insulated Bamboo Sheet,Wood,351,27.07,3.37,0.722,Yes
+279,Double-Wall Acrylic Sheet,Plastic,1843,131.21,4.17,5.103,No
+280,Waterproof HDPE Container,Plastic,1050,25.13,1.57,2.101,No
+281,Insulated Bagasse (Sugarcane),Eco,62,12.46,2.49,0.374,Yes
+282,Fire-Retardant Palm Leaf,Eco,575,17.24,1.88,0.543,Yes
+283,Commercial-Grade Corrugated Cardboard,Paper,581,5.81,0.81,0.871,Yes
+284,Industrial-Grade Cork Sheet,Wood,255,5.78,4.24,0.318,Yes
+285,Perforated Polyurethane Foam,Plastic,26,0.39,1.82,2.923,No
+286,Waterproof Hemp Composite,Eco,1218,50.31,3.5,1.107,Yes
+287,UV-Stabilized Seaweed Film,Eco,1010,15.87,5.39,0.231,Yes
+288,Perforated Kraft Paper,Paper,700,38.88,1.18,0.778,Yes
+289,Laminated Steel Strap,Metal,8861,495.75,1.74,2.685,No
+290,Medical-Grade Tissue Paper,Paper,250,1.2,4.49,0.959,Yes
+291,Woven Jute Burlap,Eco,1443,39.34,1.57,0.555,Yes
+292,Reinforced Styrofoam (EPS),Plastic,29,0.58,1.88,3.504,No
+293,Fire-Retardant Steel Strap,Metal,8490,435.4,1.78,2.573,No
+294,Fire-Retardant Teflon Coating,Plastic,2410,27.39,11.95,10.359,No
+295,Laminated Acrylic Sheet,Plastic,1341,86.78,3.62,4.701,No
+296,Fire-Retardant Aluminum Foil,Metal,2859,47.65,5.78,15.016,No
+297,Recycled Corrugated Cardboard,Paper,610,5.49,0.73,0.549,Yes
+298,Insulated ABS Plastic,Plastic,496,22.87,3.05,3.545,No
+299,Laminated Tissue Paper,Paper,274,1.2,2.1,1.038,Yes
+300,Waterproof Kraft Paper,Paper,889,50.53,1.33,0.889,Yes
+301,Industrial-Grade Balsa Wood,Wood,182,12.41,3.98,0.455,Yes
+302,Waterproof ABS Plastic,Plastic,1153,40.3,2.42,3.435,No
+303,Medical-Grade ABS Plastic,Plastic,1022,47.19,5.9,3.657,No
+304,Food-Grade Palm Leaf,Eco,499,14.96,1.8,0.399,Yes
+305,Laminated Polyurethane Foam,Plastic,32,0.58,2.31,3.779,No
+306,Heavy-Duty Bamboo Sheet,Wood,868,60.09,2.8,0.687,Yes
+307,Food-Grade Hemp Composite,Eco,1116,50.74,4.41,1.015,Yes
+308,Anti-Static Hardboard,Wood,937,31.22,2.62,0.801,Yes
+309,Heavy-Duty PET Plastic,Plastic,1767,75.86,1.52,2.601,No
+310,Food-Grade Hardboard,Wood,883,29.42,2.65,0.686,Yes
+311,Double-Wall Teflon Coating,Plastic,3309,45.12,12.84,11.231,No
+312,Double-Wall Bubble Wrap (LDPE),Plastic,1399,18.25,3.57,4.116,No
+313,Double-Wall Hardboard,Wood,1315,52.62,2.81,0.955,Yes
+314,Commercial-Grade Hardboard,Wood,928,30.92,1.95,0.722,Yes
+315,Industrial-Grade Teflon Coating,Plastic,2513,31.15,9.14,9.138,No
+316,Recycled Cotton Canvas,Eco,1525,36.6,2.01,0.915,Yes
+317,Commercial-Grade Aluminum Foil,Metal,2826,47.09,4.4,12.558,No
+318,Commercial-Grade Kraft Paper,Paper,805,50.31,1.16,0.805,Yes
+319,Food-Grade PVC Film,Plastic,1267,43.85,2.63,2.436,No
+320,Recycled PVC Film,Plastic,1279,39.86,1.59,1.476,No
+321,Industrial-Grade Hardboard,Wood,1006,36.58,2.01,0.782,Yes
+322,Laminated ABS Plastic,Plastic,1173,49.2,2.87,4.131,No
+323,Double-Wall Mushroom Mycelium,Eco,232,1.48,5.77,0.722,Yes
+324,Waterproof Sheep Wool,Eco,1386,9.69,3.72,0.533,Yes
+325,Medical-Grade Balsa Wood,Wood,156,11.7,10.24,0.468,Yes
+326,Fire-Retardant Cornstarch Foam,Eco,44,0.55,3.01,1.565,Yes
+327,Anti-Static PLA Bioplastic,Eco,1228,59.44,3.88,1.961,Yes
+328,Fire-Retardant Bagasse (Sugarcane),Eco,129,21.45,2.19,0.38,Yes
+329,Reinforced Hardboard,Wood,1101,45.89,2.39,0.785,Yes
+330,Fire-Retardant ABS Plastic,Plastic,1107,42.58,2.9,3.9,No
+331,Perforated Steel Strap,Metal,7197,328.07,1.35,2.05,No
+332,Standard Wax Paper,Paper,918,15.3,1.22,1.122,Yes
+333,Standard Styrofoam (EPS),Plastic,24,0.39,1.46,3.207,No
+334,Reinforced Corrugated Cardboard,Paper,705,8.82,1.02,0.97,Yes
+335,Reinforced ABS Plastic,Plastic,1225,58.91,2.55,3.348,No
+336,Commercial-Grade Teflon Coating,Plastic,2112,24,8.06,7.681,No
+337,Insulated Borosilicate Glass,Glass,1150,37.14,4.95,1.362,No
+338,Heavy-Duty PLA Bioplastic,Eco,1690,88.07,4.11,2.265,Yes
+339,Single-Ply Bamboo Sheet,Wood,636,31.82,1.7,0.545,Yes
+340,Commercial-Grade Wax Paper,Paper,890,14.84,1.25,1.088,Yes
+341,Laminated Hardboard,Wood,972,35.35,2.47,0.894,Yes
+342,Anti-Static Tissue Paper,Paper,253,1.01,2.13,0.891,Yes
+343,Fire-Retardant Corrugated Cardboard,Paper,658,6.58,1.2,1.167,Yes
+344,Reinforced Wax Paper,Paper,1120,23.34,1.62,1.255,Yes
+345,Lightweight Borosilicate Glass,Glass,1739,46.8,2.63,0.965,No
+346,Industrial-Grade Polycarbonate,Plastic,1321,78.03,3.08,4.182,No
+347,Standard Acrylic Sheet,Plastic,1172,69.51,2.48,3.475,No
+348,Anti-Static Mushroom Mycelium,Eco,151,0.81,4.93,0.554,Yes
+349,Woven Wax Paper,Paper,981,19.32,1.55,1.199,Yes
+350,Industrial-Grade Tissue Paper,Paper,280,1.22,1.68,0.897,Yes
+351,Anti-Static Nylon Fabric,Plastic,1095,57.11,4,5.235,No
+352,Anti-Static Steel Strap,Metal,7792,399.61,1.68,2.198,No
+353,Waterproof Glass Jar,Glass,2670,48.54,1.75,0.854,No
+354,Single-Ply Tissue Paper,Paper,233,0.72,1.24,0.745,Yes
+355,Single-Ply Molded Pulp,Paper,280,1.45,0.83,0.653,Yes
+356,Recycled Molded Pulp,Paper,285,1.71,0.86,0.399,Yes
+357,Medical-Grade Acrylic Sheet,Plastic,1185,84.38,7.53,4.219,No
+358,Insulated Glass Jar,Glass,1206,28.94,2.31,0.926,No
+359,Double-Wall Nylon Fabric,Plastic,1789,112.01,4.98,7.26,No
+360,Industrial-Grade Nylon Fabric,Plastic,1229,69.97,3.21,5.345,No
+361,Double-Wall Jute Burlap,Eco,1917,53.09,1.89,0.688,Yes
+362,Single-Ply PLA Bioplastic,Eco,1165,43.83,2.34,1.69,Yes
+363,UV-Stabilized Cork Sheet,Wood,238,5.45,5.55,0.357,Yes
+364,Laminated Glass Jar,Glass,2843,62.04,2.17,1.075,No
+365,Perforated Balsa Wood,Wood,143,7.93,3.82,0.396,Yes
+366,Heavy-Duty Polycarbonate,Plastic,1571,91.61,3.95,4.591,No
+367,Commercial-Grade Bagasse (Sugarcane),Eco,123,20.43,1.61,0.306,Yes
+368,Laminated Cornstarch Foam,Eco,42,0.57,2.67,1.488,Yes
+369,Lightweight Teflon Coating,Plastic,1700,19.31,6.95,6.953,No
+370,Double-Wall Balsa Wood,Wood,249,18.66,5.81,0.581,Yes
+371,Laminated Corrugated Cardboard,Paper,656,7.16,1.11,1.163,Yes
+372,Double-Wall Borosilicate Glass,Glass,3284,106.02,4.71,1.512,No
+373,Recycled Cork Sheet,Wood,249,4.67,3.74,0.187,Yes
+374,Woven Nylon Fabric,Plastic,1303,80.32,4.02,5.664,No
+375,Reinforced Steel Strap,Metal,9125,584.93,1.52,2.145,No
+376,Commercial-Grade Palm Leaf,Eco,498,14.93,1.25,0.398,Yes
+377,Food-Grade Balsa Wood,Wood,167,10.47,5.5,0.419,Yes
+378,Reinforced Borosilicate Glass,Glass,2781,93.53,4.05,1.257,No
+379,Lightweight Pine Wood Crate,Wood,403,28.18,1.81,0.453,Yes
+380,Fire-Retardant Borosilicate Glass,Glass,2496,67.16,4.58,1.455,No
+381,Fire-Retardant Molded Pulp,Paper,318,2.12,1.45,0.878,Yes
+382,Fire-Retardant Jute Burlap,Eco,1480,34.15,1.86,0.673,Yes
+383,Double-Wall Cork Sheet,Wood,374,9.34,6.64,0.436,Yes
+384,UV-Stabilized Molded Pulp,Paper,298,2.18,1.39,0.833,Yes
+385,Medical-Grade Polyurethane Foam,Plastic,30,0.59,5.02,3.546,No
+386,Anti-Static Polycarbonate,Plastic,1236,66.95,4.04,4.306,No
+387,Perforated Pine Wood Crate,Wood,436,27.16,2.13,0.485,Yes
+388,Double-Wall PLA Bioplastic,Eco,1917,111.28,4.62,2.597,Yes
+389,Perforated PVC Film,Plastic,1185,36.46,2.01,2.532,No
+390,UV-Stabilized HDPE Container,Plastic,976,28.25,1.87,2.342,No
+391,Waterproof Wax Paper,Paper,1035,15.68,1.51,1.265,Yes
+392,Fire-Retardant Plywood,Wood,741,45.57,3.88,0.808,Yes
+393,Lightweight Bamboo Sheet,Wood,576,37,1.94,0.555,Yes
+394,Commercial-Grade Borosilicate Glass,Glass,2174,58.5,3.07,1.073,No
+395,Medical-Grade Recycled Denim,Eco,291,5.82,4.66,0.699,Yes
+396,Woven ABS Plastic,Plastic,1184,53.82,2.69,3.529,No
+397,Medical-Grade Styrofoam (EPS),Plastic,25,0.48,4.48,3.942,No
+398,Perforated Polycarbonate,Plastic,1062,51.15,3.03,3.738,No
+399,Industrial-Grade Cotton Canvas,Eco,1683,48.97,2.47,1.683,Yes
+400,Commercial-Grade Tissue Paper,Paper,241,0.96,1.52,0.772,Yes
+401,Heavy-Duty Glass Jar,Glass,3390,73.01,2.19,1.001,No
+402,UV-Stabilized ABS Plastic,Plastic,1059,44.79,2.85,3.787,No
+403,Standard Seaweed Film,Eco,1045,14.93,3.98,0.199,Yes
+404,Woven Cotton Canvas,Eco,1703,53.69,2.95,1.703,Yes
+405,Recycled Pine Wood Crate,Wood,484,30.47,1.74,0.29,Yes
+406,Waterproof Mushroom Mycelium,Eco,170,0.82,4.33,0.567,Yes
+407,Anti-Static Hemp Composite,Eco,1149,52.23,4.24,1.149,Yes
+408,Lightweight PLA Bioplastic,Eco,999,48.34,2.54,1.631,Yes
+409,Woven Acrylic Sheet,Plastic,1282,89.9,3.21,3.803,No
+410,Laminated Balsa Wood,Wood,184,12.53,5.12,0.543,Yes
+411,Anti-Static Teflon Coating,Plastic,2283,25.94,11.62,9.132,No
+412,Insulated PVC Film,Plastic,665,27.64,2.95,3.071,No
+413,Laminated Sheep Wool,Eco,1395,11.7,4.37,0.634,Yes
+414,Perforated Tissue Paper,Paper,231,0.82,1.7,0.822,Yes
+415,Perforated Palm Leaf,Eco,468,12.49,1.37,0.416,Yes
+416,Food-Grade Molded Pulp,Paper,308,2.06,1.54,0.72,Yes
+417,Lightweight Steel Strap,Metal,6082,311.88,1.05,1.754,No
+418,Recycled Wax Paper,Paper,927,13.9,1.11,0.68,Yes
+419,Perforated Nylon Fabric,Plastic,1064,49.35,3.39,5.141,No
+420,Double-Wall Sheep Wool,Eco,1871,17.27,4.91,0.672,Yes
+421,Waterproof Recycled Denim,Eco,316,4.79,1.84,0.632,Yes
+422,Insulated Nylon Fabric,Plastic,599,37.5,5,6.25,No
+423,Single-Ply Cornstarch Foam,Eco,36,0.35,1.62,1.091,Yes
+424,Heavy-Duty Tissue Paper,Paper,335,1.44,2.17,0.99,Yes
+425,Insulated Pine Wood Crate,Wood,241,20.23,3.08,0.578,Yes
+426,Anti-Static Kraft Paper,Paper,795,49.66,1.53,0.874,Yes
+427,Waterproof Cotton Canvas,Eco,1678,40.69,2.69,1.678,Yes
+428,Standard Aluminum Foil,Metal,2753,45.89,4.08,12.236,No
+429,Perforated Jute Burlap,Eco,1216,24.94,1.37,0.52,Yes
+430,Recycled Bamboo Sheet,Wood,678,39.23,1.83,0.349,Yes
+431,Standard Tissue Paper,Paper,247,0.99,1.48,0.79,Yes
+432,Lightweight Nylon Fabric,Plastic,942,49.13,2.76,4.606,No
+433,Standard Molded Pulp,Paper,296,1.97,0.99,0.691,Yes
+434,Single-Ply Polypropylene (PP),Plastic,849,25.55,1.17,1.971,No
+435,Commercial-Grade Acrylic Sheet,Plastic,1209,71.72,2.69,3.586,No
+436,Heavy-Duty Polyurethane Foam,Plastic,40,0.72,2.44,3.69,No
+437,Insulated Kraft Paper,Paper,394,29.55,1.73,0.946,Yes
+438,Lightweight Glass Jar,Glass,2029,40.59,1.37,0.731,No
+439,Commercial-Grade Tin Plate,Metal,8110,206.63,1.95,8.265,No
+440,Medical-Grade PVC Film,Plastic,1248,51.82,5.18,2.879,No
+441,Recycled HDPE Container,Plastic,987,23.37,1.22,1.184,No
+442,Standard Hemp Composite,Eco,1152,52.35,3.04,1.047,Yes
+443,Perforated Tin Plate,Metal,7044,159.52,1.97,7.976,No
+444,Heavy-Duty Polypropylene (PP),Plastic,1176,48.96,1.96,2.518,No
+445,Heavy-Duty Wax Paper,Paper,1133,20.34,1.63,1.278,Yes
+446,Anti-Static Recycled Denim,Eco,308,5.13,2.3,0.677,Yes
+447,Laminated Bagasse (Sugarcane),Eco,138,25.14,2.2,0.409,Yes
+448,Reinforced Cork Sheet,Wood,293,7.62,5.28,0.335,Yes
+449,Recycled Mushroom Mycelium,Eco,155,0.74,3.25,0.309,Yes
+450,UV-Stabilized Pine Wood Crate,Wood,518,39.92,2.9,0.622,Yes
+451,Anti-Static Borosilicate Glass,Glass,2224,59.83,4.19,1.207,No
+452,UV-Stabilized Palm Leaf,Eco,491,16.2,1.65,0.471,Yes
+453,Insulated Mushroom Mycelium,Eco,72,0.46,5.35,0.573,Yes
+454,Commercial-Grade Polycarbonate,Plastic,1161,62.88,2.84,3.676,No
+455,Standard ABS Plastic,Plastic,995,38.28,1.91,2.966,No
+456,Medical-Grade HDPE Container,Plastic,930,29.38,3.82,2.233,No
+457,Industrial-Grade Tin Plate,Metal,9058,251.75,2.08,9.231,No
+458,Industrial-Grade Molded Pulp,Paper,335,2.44,1.12,0.782,Yes
+459,Anti-Static Palm Leaf,Eco,512,15.36,1.72,0.451,Yes
+460,Food-Grade PET Plastic,Plastic,1388,55.32,1.66,2.213,No
+461,Single-Ply Cork Sheet,Wood,220,3.57,3.27,0.275,Yes
+462,Perforated Plywood,Wood,560,30.61,2.63,0.574,Yes
+463,Food-Grade Styrofoam (EPS),Plastic,26,0.42,2.34,3.436,No
+464,Fire-Retardant Tissue Paper,Paper,269,1.08,2.2,1.019,Yes
+465,Commercial-Grade Glass Jar,Glass,2390,47.8,1.51,0.765,No
+466,Single-Ply Sheep Wool,Eco,1129,6.76,2.47,0.434,Yes
+467,Waterproof Bamboo Sheet,Wood,761,44.49,2.49,0.653,Yes
+468,Food-Grade Teflon Coating,Plastic,2118,24.06,11.55,7.701,No
+469,Standard Sheep Wool,Eco,1349,10.38,3.32,0.519,Yes
+470,Single-Ply Mushroom Mycelium,Eco,138,0.57,2.86,0.46,Yes
+471,Heavy-Duty Kraft Paper,Paper,1027,69.12,1.52,0.948,Yes
+472,Food-Grade Kraft Paper,Paper,768,48,1.58,0.768,Yes
+473,Perforated Teflon Coating,Plastic,1944,19.64,8.64,7.855,No
+474,Anti-Static Cork Sheet,Wood,234,4.89,5.47,0.322,Yes
+475,Industrial-Grade Acrylic Sheet,Plastic,1343,86.89,2.84,3.983,No
+476,Anti-Static ABS Plastic,Plastic,1000,38.48,2.69,3.28,No
+477,Anti-Static Acrylic Sheet,Plastic,1183,70.16,3.51,3.859,No
+478,Lightweight Balsa Wood,Wood,127,7.96,3.14,0.358,Yes
+479,Anti-Static Glass Jar,Glass,2474,49.49,2.08,0.871,No
+480,Industrial-Grade Borosilicate Glass,Glass,2363,69.35,3.18,1.165,No
+481,Medical-Grade Cork Sheet,Wood,237,5.93,11.87,0.356,Yes
+482,Standard Mushroom Mycelium,Eco,155,0.83,3.63,0.518,Yes
+483,Fire-Retardant PET Plastic,Plastic,1450,57.78,1.58,2.732,No
+484,Double-Wall Kraft Paper,Paper,1158,86.84,1.7,1.081,Yes
+485,Laminated Palm Leaf,Eco,546,17.86,1.67,0.516,Yes
+486,Recycled ABS Plastic,Plastic,1053,36.46,1.82,1.884,No
+487,Recycled Styrofoam (EPS),Plastic,25,0.35,1.33,1.952,No
+488,Industrial-Grade Cornstarch Foam,Eco,45,0.62,2.27,1.363,Yes
+489,Anti-Static Jute Burlap,Eco,1361,31.4,1.76,0.576,Yes
+490,Double-Wall Hemp Composite,Eco,1726,94.12,4.85,1.464,Yes
+491,UV-Stabilized Cotton Canvas,Eco,1523,44.68,3.13,1.828,Yes
+492,Recycled Aluminum Foil,Metal,2713,40.69,3.62,7.235,No
+493,Laminated Pine Wood Crate,Wood,550,41.98,2.8,0.65,Yes
+494,Industrial-Grade Bagasse (Sugarcane),Eco,128,23.26,1.6,0.32,Yes
+495,Perforated Bagasse (Sugarcane),Eco,103,15.22,1.57,0.285,Yes
+496,Insulated Seaweed Film,Eco,524,8.99,6.39,0.24,Yes
+497,Laminated Jute Burlap,Eco,1403,35.31,1.65,0.638,Yes
+498,Food-Grade Cork Sheet,Wood,243,5.06,6.07,0.304,Yes
+499,Waterproof Polypropylene (PP),Plastic,1026,36.08,1.73,2.381,No
+500,Standard PET Plastic,Plastic,1377,54.9,1.1,2.196,No
+501,Perforated PET Plastic,Plastic,1181,41.82,1.15,2.091,No
+502,Anti-Static Corrugated Cardboard,Paper,607,6.07,1.13,1.002,Yes
+503,Recycled PET Plastic,Plastic,1360,48.77,0.98,1.3,No
+504,Lightweight Bubble Wrap (LDPE),Plastic,759,8.25,2.04,2.691,No
+505,Reinforced Tissue Paper,Paper,295,1.48,1.92,0.866,Yes
+506,Reinforced Polyurethane Foam,Plastic,36,0.76,2.23,3.337,No
+507,Double-Wall PET Plastic,Plastic,2124,101.6,1.81,3.161,No
+508,Fire-Retardant Polyurethane Foam,Plastic,34,0.57,2.63,4.018,No
+509,Food-Grade Tin Plate,Metal,7960,202.79,2.74,8.112,No
+510,Reinforced Bamboo Sheet,Wood,855,68.68,2.78,0.672,Yes
+511,Commercial-Grade Styrofoam (EPS),Plastic,25,0.4,1.58,3.308,No
+512,Recycled PLA Bioplastic,Eco,1264,55.07,2.57,1.101,Yes
+513,Insulated HDPE Container,Plastic,489,15.46,2.14,2.35,No
+514,Heavy-Duty Borosilicate Glass,Glass,2983,86.44,4.32,1.358,No
+515,Insulated Polyurethane Foam,Plastic,15,0.3,2.74,3.625,No
+516,Commercial-Grade PET Plastic,Plastic,1311,52.25,1.1,2.09,No
+517,UV-Stabilized Corrugated Cardboard,Paper,575,6.33,1.07,1.035,Yes
+518,Heavy-Duty Pine Wood Crate,Wood,624,47.05,2.69,0.576,Yes
+519,Medical-Grade Cornstarch Foam,Eco,40,0.59,5.94,1.426,Yes
+520,Single-Ply Recycled Denim,Eco,265,3.43,1.25,0.529,Yes
+521,Perforated Mushroom Mycelium,Eco,135,0.64,3.86,0.502,Yes
+522,Reinforced Kraft Paper,Paper,922,72.04,1.37,0.845,Yes
+523,Fire-Retardant Seaweed Film,Eco,1192,17.04,6.19,0.268,Yes
+524,Fire-Retardant Pine Wood Crate,Wood,567,39.67,3.09,0.67,Yes
+525,Waterproof Teflon Coating,Plastic,2440,25.21,9.68,8.874,No
+526,Commercial-Grade Sheep Wool,Eco,1341,10.31,3.47,0.516,Yes
+527,Anti-Static Aluminum Foil,Metal,2619,43.65,5.43,12.803,No
+528,Woven Kraft Paper,Paper,880,65.02,1.43,0.88,Yes
+529,UV-Stabilized Styrofoam (EPS),Plastic,26,0.46,2.2,4.144,No
+530,Recycled Kraft Paper,Paper,801,45.05,0.99,0.481,Yes
+531,Medical-Grade Polycarbonate,Plastic,1142,74.24,8,4.34,No
+532,Single-Ply Acrylic Sheet,Plastic,1070,49.38,2.02,3.174,No
+533,Perforated PLA Bioplastic,Eco,1108,47.65,3.06,1.787,Yes
+534,Double-Wall Cotton Canvas,Eco,2338,74.82,3.66,2.182,Yes
+535,Laminated Tin Plate,Metal,8415,233.88,2.46,10.135,No
+536,Medical-Grade Polypropylene (PP),Plastic,899,41.71,4.17,2.503,No
+537,Heavy-Duty Molded Pulp,Paper,389,2.79,1.4,0.838,Yes
+538,Commercial-Grade Hemp Composite,Eco,1104,50.19,3.06,1.004,Yes
+539,Reinforced Bubble Wrap (LDPE),Plastic,1122,15.25,2.91,3.242,No
+540,Commercial-Grade Steel Strap,Metal,8043,412.48,1.3,2.062,No
+541,Medical-Grade Pine Wood Crate,Wood,491,41.2,5.89,0.589,Yes
+542,Fire-Retardant HDPE Container,Plastic,1058,27.84,1.97,2.5,No
+543,Standard Balsa Wood,Wood,166,10.37,3.63,0.415,Yes
+544,Waterproof Steel Strap,Metal,8472,394.96,1.42,2.172,No
+545,Reinforced Mushroom Mycelium,Eco,178,1.18,4.49,0.542,Yes
+546,Recycled Nylon Fabric,Plastic,1202,56.44,2.82,3.135,No
+547,Single-Ply Bubble Wrap (LDPE),Plastic,866,7.32,1.84,2.729,No
+548,UV-Stabilized Glass Jar,Glass,2529,55.63,2.12,0.971,No
+549,Single-Ply Hemp Composite,Eco,1036,36.64,2.43,0.942,Yes
+550,Laminated Kraft Paper,Paper,868,59.17,1.52,1.026,Yes
+551,Perforated Sheep Wool,Eco,1185,8.1,3.56,0.506,Yes
+552,Reinforced Palm Leaf,Eco,622,23.32,1.62,0.456,Yes
+553,UV-Stabilized Recycled Denim,Eco,287,5.27,2.15,0.69,Yes
+554,Heavy-Duty Balsa Wood,Wood,206,13.88,4.86,0.476,Yes
+555,Insulated Tissue Paper,Paper,127,0.61,2.43,0.973,Yes
+556,Recycled Jute Burlap,Eco,1341,27.84,1.11,0.309,Yes
+557,Commercial-Grade Cork Sheet,Wood,249,5.18,4.35,0.311,Yes
+558,Waterproof Corrugated Cardboard,Paper,663,6.03,0.97,0.995,Yes
+559,Waterproof PET Plastic,Plastic,1587,57.52,1.38,2.531,No
+560,Standard PVC Film,Plastic,1292,44.73,1.79,2.485,No
+561,Heavy-Duty HDPE Container,Plastic,1196,33.91,1.76,2.209,No
+562,Perforated Bamboo Sheet,Wood,617,35.24,2.26,0.587,Yes
+563,Perforated Bubble Wrap (LDPE),Plastic,851,8.22,2.49,2.981,No
+564,UV-Stabilized Sheep Wool,Eco,1263,10.69,4.35,0.583,Yes
+565,Anti-Static HDPE Container,Plastic,939,24.7,1.8,2.065,No
+566,Woven Teflon Coating,Plastic,2529,33.97,10.87,9.197,No
+567,Insulated Hemp Composite,Eco,566,30.85,4.77,1.234,Yes
+568,Heavy-Duty Cork Sheet,Wood,321,7.2,5.76,0.37,Yes
+569,Laminated Polycarbonate,Plastic,1273,75.2,3.78,4.762,No
+570,Industrial-Grade ABS Plastic,Plastic,1141,47.85,2.19,3.4,No
+571,Woven Mushroom Mycelium,Eco,169,1.06,4.66,0.563,Yes
+572,Waterproof PVC Film,Plastic,1427,44.9,2.16,2.744,No
+573,Insulated Plywood,Wood,338,24.95,4.16,0.749,Yes
+574,Standard Nylon Fabric,Plastic,1133,59.13,2.96,4.928,No
+575,Woven PLA Bioplastic,Eco,1311,74.97,3.5,1.903,Yes
+576,Woven Cork Sheet,Wood,260,6.4,5.12,0.325,Yes
+577,Lightweight Polycarbonate,Plastic,989,53.58,2.6,3.524,No
+578,Heavy-Duty Jute Burlap,Eco,1641,40.78,1.63,0.583,Yes
+579,Lightweight Sheep Wool,Eco,1028,7.9,2.85,0.445,Yes
+580,Woven Bamboo Sheet,Wood,788,59.87,2.79,0.675,Yes
+581,Lightweight Cork Sheet,Wood,193,4.02,3.62,0.271,Yes
+582,UV-Stabilized Polycarbonate,Plastic,1193,71.06,3.9,4.532,No
+583,Recycled Polycarbonate,Plastic,1208,58.89,2.54,2.295,No
+584,Heavy-Duty Corrugated Cardboard,Paper,755,8.14,1.08,1.046,Yes
+585,UV-Stabilized Bubble Wrap (LDPE),Plastic,919,10.99,3.08,3.477,No
+586,Commercial-Grade Nylon Fabric,Plastic,1150,60.01,3.15,5.001,No
+587,Reinforced Molded Pulp,Paper,375,3.12,1.35,0.802,Yes
+588,Standard Borosilicate Glass,Glass,2245,60.41,3.02,1.108,No
+589,Single-Ply ABS Plastic,Plastic,966,28.9,1.65,2.88,No
+590,Lightweight Polyurethane Foam,Plastic,25,0.41,1.56,2.762,No
+591,Industrial-Grade Palm Leaf,Eco,543,17.77,1.3,0.434,Yes
+592,Standard Hardboard,Wood,905,30.18,1.81,0.704,Yes
+593,UV-Stabilized Polypropylene (PP),Plastic,894,38.04,1.94,2.49,No
+594,Standard Plywood,Wood,675,41.52,2.59,0.623,Yes
+595,Medical-Grade PET Plastic,Plastic,1405,67.19,3.36,2.688,No
+596,Insulated Teflon Coating,Plastic,1084,14.78,12.61,9.459,No
+597,UV-Stabilized Nylon Fabric,Plastic,1112,63.84,4.06,5.804,No
+598,Laminated Recycled Denim,Eco,326,5.93,2.21,0.771,Yes
+599,Double-Wall Bamboo Sheet,Wood,1004,77.42,3.21,0.803,Yes
+600,Anti-Static Cornstarch Foam,Eco,41,0.52,2.9,1.369,Yes
+601,Mushroom Pkg (Mycelium),Bio-based,95,12,3.2,0.18,Yes
+602,Honeycomb Paper,Paper,380,42,1.95,0.75,Yes

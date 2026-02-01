@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 EcoPackAI - Login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Login Card -->
+        <div id="loginCard" class="login-card">
+            <div class="logo-section">
+                <div class="logo-icon">🌱</div>
+                <h1 class="logo-text">EcoPackAI</h1>
+                <p class="logo-subtitle">AI-Powered Sustainable Packaging</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">📧 Email Address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        placeholder="Enter your email"
+                        required
+                        autocomplete="email"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">🔒 Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="Enter your password"
+                        required
+                        autocomplete="current-password"
+                    >
+                    <small id="passwordHint" class="hint hidden">
+                        First time? Set your password here
+                    </small>
+                </div>
+
+                <div id="attemptsInfo" class="attempts-info hidden">
+                    <span id="attemptsText"></span>
+                </div>
+
+                <button type="submit" id="loginBtn" class="btn-primary">
+                    Login
+                </button>
+                <p style="margin-top:1rem; font-size:0.85rem; color:#94a3b8; text-align:center;">
+                    Don’t have access? Contact your administrator.
+                </p>
+
+            </form>
+
+            <div class="footer-text">
+                <p>Sustainable packaging decisions powered by AI</p>
+            </div>
+        </div>
+
+        <!-- Access Denied Card (shown after 3 failed attempts) -->
+        <div id="deniedCard" class="denied-card hidden">
+            <div class="denied-icon">❌</div>
+            <h1 class="denied-title">ACCESS DENIED</h1>
+            <p class="denied-message">
+                Your account has been locked due to multiple failed login attempts.
+            </p>
+            <p class="denied-contact">
+                Please contact your administrator to unlock your account.
+            </p>
+        </div>
+    </div>
+
+    <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+# Virtual environments
+ecopackvenv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment variables
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ML models (large files)
+ml/models/
+
+# OS junk
+.DS_Store
+Thumbs.db
