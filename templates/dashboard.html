@@ -15,7 +15,7 @@
             overflow-x: hidden;
         }
 
-        /* SIDEBAR */
+
         .sidebar {
             width: 240px;
             height: 100vh;
@@ -48,7 +48,7 @@
             background: rgba(255, 255, 255, 0.18);
         }
 
-        /* HAMBURGER BUTTON */
+
         .mobile-menu-btn {
             display: none;
             position: fixed;
@@ -63,7 +63,7 @@
             cursor: pointer;
         }
 
-        /* MAIN CONTENT */
+
         .main {
             margin-left: 260px;
             padding: 22px;
@@ -135,7 +135,7 @@
             border: none;
         }
 
-        /* MOBILE RESPONSIVENESS */
+
         @media(max-width: 900px) {
 
             .mobile-menu-btn {
@@ -179,10 +179,10 @@
 
 <body>
 
-    <!-- MOBILE TOGGLE BUTTON -->
+
     <div class="mobile-menu-btn" onclick="toggleSidebar()">☰ Menu</div>
 
-    <!-- SIDEBAR -->
+
     <div class="sidebar" id="sidebar">
         <h3>EcoPackAI Dashboard</h3>
         <a href="/">🏠 Home</a>
@@ -190,12 +190,12 @@
         <a href="#">⚙ Settings</a>
     </div>
 
-    <!-- MAIN CONTENT -->
+
     <div class="main">
 
         <h2>📦 Sustainability Insights</h2>
 
-        <!-- KPI CARDS -->
+
         <div class="kpi-row">
             <div class="kpi-card">
                 <div class="kpi-label">Avg CO₂ Saved</div>
@@ -215,13 +215,13 @@
             </div>
         </div>
 
-        <!-- EXPORT BUTTONS -->
+
         <div style="margin-bottom: 16px;">
             <button onclick="exportExcel()">Export Excel</button>
             <button onclick="exportPDF()">Export PDF</button>
         </div>
 
-        <!-- CHART GRID -->
+
         <div class="grid-2">
 
             <div class="card">
@@ -249,17 +249,13 @@
                 <canvas id="scoreChart"></canvas>
             </div>
 
-            <div class="card wide">
-                <div class="title">Power BI Embedded Dashboard</div>
-                <iframe src="https://app.powerbi.com/view?r=YOUR_EMBED_URL"></iframe>
-            </div>
 
         </div>
 
     </div>
 
 
-    <!-- JS SECTION -->
+
     <script>
         function toggleSidebar() {
             document.getElementById("sidebar").classList.toggle("open");

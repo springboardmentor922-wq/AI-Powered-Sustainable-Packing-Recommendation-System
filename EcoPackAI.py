@@ -8,9 +8,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 
 
-# ==================================================
-# 1. DATA CLEANING 
-# ==================================================
+
 
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     df.columns = df.columns.str.strip().str.replace(" ", "_")
@@ -24,17 +22,13 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-# ==================================================
-# 2. LOAD DATA
-# ==================================================
+
 
 orders_df = clean_data(pd.read_csv("materials.cvs1.csv"))
 materials_df = clean_data(pd.read_csv("materials_cvs2.csv"))
 
 
-# ==================================================
-# 3. FEATURE ENGINEERING (SUSTAINABILITY)
-# ==================================================
+
 
 materials_df["Biodegradable_Binary"] = (
     materials_df["Biodegradable"].map({"Yes": 1, "No": 0}).fillna(0)
@@ -60,9 +54,7 @@ materials_df["Material_Suitability_Score"] = (
 materials_df.to_csv("cleaned_materials_data.csv", index=False)
 
 
-# ==================================================
-# 4. MERGE DATASETS
-# ==================================================
+
 
 packaging_mapping = {
     "Kraft Paper Mailer": "Single-Ply Kraft Paper",
@@ -94,9 +86,7 @@ merged_df = merged_df.rename(columns={
 merged_df.to_csv("cleaned_and_merged_eco_data.csv", index=False)
 
 
-# ==================================================
-# 5. ML MODEL TRAINING
-# ==================================================
+
 
 features = [
     "Weight_kg",
@@ -141,9 +131,7 @@ cost_model.fit(X_train, y_cost_train)
 co2_model.fit(X_train, y_co2_train)
 
 
-# ==================================================
-# 6. AI MATERIAL RECOMMENDATION FUNCTION
-# ==================================================
+
 def ai_material_ranking(product_features: dict) -> pd.DataFrame:
     materials = pd.read_csv("cleaned_materials_data.csv")
 
