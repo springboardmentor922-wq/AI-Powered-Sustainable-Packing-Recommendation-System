@@ -141,8 +141,8 @@
     <!-- SIDEBAR -->
     <div class="sidebar">
         <h3>EcoPackAI Dashboard</h3>
-        <a href="index.html">🏠 Home</a>
-        <a href="dashboard.html">📊 Analytics</a>
+        <a href="/">🏠 Home</a>
+        <a href="dashboard">📊 Analytics</a>
         <a href="#">⚙ Settings</a>
     </div>
 
@@ -216,7 +216,7 @@
 
     <script>
         async function loadDashboard() {
-            const res = await fetch("http://127.0.0.1:5000/api/dashboard");
+            const res = await fetch("/api/dashboard");
             const data = await res.json();
 
             document.getElementById("kpi_co2").innerHTML = (data.co2_saved.reduce((a, b) => a + b) / data.co2_saved.length).toFixed(1);
