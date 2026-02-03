@@ -1,0 +1,13 @@
+# Python cache
+__pycache__/
+
+# IDE settings
+.idea/
+
+# Exported reports
+exports/
+*.xlsx
+*.pdf
+
+# Temporary/cleaned generated datasets
+cleaned_*.csv
