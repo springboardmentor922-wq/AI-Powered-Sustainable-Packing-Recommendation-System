@@ -85,51 +85,19 @@ def get_recommendations(weight_kg, volume_m3, distance_km, shipping_mode, weight
             
             co2_pred = models.co2_model.predict(test_encoded[models.co2_feature_order])[0]
             cost_pred = models.cost_model.predict(test_encoded[models.cost_feature_order])[0]
+            combined_score = (weight_co2 * co2_pred + weight_cost * cost_pred)
             
             recommendations.append({
                 'Material_Name': material['Material_Name'],
                 'Category': material['Category'],
-                'Predicted_CO2_kg': float(co2_pred),
-                'Predicted_Cost_USD': float(cost_pred),
-                'Biodegradable': bool(material['Biodegradable'])
+                'Predicted_CO2_kg': round(co2_pred, 3),
+                'Predicted_Cost_USD': round(cost_pred, 2),
+                'Biodegradable': bool(material['Biodegradable']),
+                'Combined_Score': round(combined_score, 3)
             })
         
         recommendations_df = pd.DataFrame(recommendations)
-        
-        if not recommendations_df.empty:
-            # Normalize scores
-            co2_min = recommendations_df['Predicted_CO2_kg'].min()
-            co2_max = recommendations_df['Predicted_CO2_kg'].max()
-            cost_min = recommendations_df['Predicted_Cost_USD'].min()
-            cost_max = recommendations_df['Predicted_Cost_USD'].max()
-            
-            # Helper for safe division
-            def normalize(val, min_val, max_val):
-                if max_val == min_val:
-                    return 0.0
-                return (val - min_val) / (max_val - min_val)
-            
-            recommendations_df['CO2_Score'] = recommendations_df['Predicted_CO2_kg'].apply(
-                lambda x: normalize(x, co2_min, co2_max)
-            )
-            recommendations_df['Cost_Score'] = recommendations_df['Predicted_Cost_USD'].apply(
-                lambda x: normalize(x, cost_min, cost_max)
-            )
-            
-            # Calculate combined score
-            recommendations_df['Combined_Score'] = (
-                weight_co2 * recommendations_df['CO2_Score'] + 
-                weight_cost * recommendations_df['Cost_Score']
-            )
-            
-            # Round values for display
-            recommendations_df['Predicted_CO2_kg'] = recommendations_df['Predicted_CO2_kg'].round(3)
-            recommendations_df['Predicted_Cost_USD'] = recommendations_df['Predicted_Cost_USD'].round(2)
-            recommendations_df['Combined_Score'] = recommendations_df['Combined_Score'].round(3)
-            
-            return recommendations_df.sort_values('Combined_Score').head(5).to_dict('records')
-        
-        return []
+        return recommendations_df.sort_values('Combined_Score').head(5).to_dict('records')
     
     except Exception as e:
         print(f"Error generating recommendations: {e}")
