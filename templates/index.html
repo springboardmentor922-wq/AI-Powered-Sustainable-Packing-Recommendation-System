@@ -167,7 +167,7 @@
                 </div>
 
                 <div class="col-12 text-center mt-3">
-                    <a href="dashboard.html" class="btn btn-success w-50">
+                    <a href="dashboard" class="btn btn-success w-50">
                         📊 Sustainability Dashboard
                     </a>
                 </div>
@@ -196,7 +196,8 @@
                 fragility: fragility.value
             };
 
-            const response = await fetch("http://127.0.0.1:5000/api/recommend", {
+            // 🔥 FIXED → Use relative URL for Render deployment
+            const response = await fetch("/api/recommend", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload)
@@ -238,19 +239,6 @@
 
             document.getElementById("resultArea").style.display = "block";
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
     </script>
 
 </body>

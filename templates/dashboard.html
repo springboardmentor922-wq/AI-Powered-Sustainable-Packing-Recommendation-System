@@ -235,7 +235,7 @@
 
         function exportExcel() {
             const a = document.createElement("a");
-            a.href = "http://127.0.0.1:5000/api/dashboard/export/excel";
+            a.href = "/api/dashboard/export/excel";
             a.download = "EcoPackAI_Report.xlsx";
             document.body.appendChild(a);
             a.click();
@@ -243,7 +243,7 @@
         }
 
         function exportPDF() {
-            window.location.href = "http://127.0.0.1:5000/api/dashboard/export/pdf";
+            window.location.href = "/api/dashboard/export/pdf";
         }
     </script>
 
