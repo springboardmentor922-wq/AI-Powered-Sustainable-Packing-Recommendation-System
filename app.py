@@ -164,18 +164,26 @@ def export_excel():
 @app.route("/api/dashboard/export/pdf", methods=["GET"])
 def export_pdf():
     try:
+        import os
         df = pd.read_csv("cleaned_and_merged_eco_data.csv")
 
-        file_path = os.path.abspath("EcoPackAI_Professional_Report.pdf")
+        # -----------------------------------------
+        # SAME PATH HANDLING AS EXCEL EXPORT
+        # -----------------------------------------
+        export_dir = os.path.abspath("exports")
+        os.makedirs(export_dir, exist_ok=True)
+
+        file_path = os.path.join(export_dir, "EcoPackAI_Professional_Report.pdf")
+
+        # Create PDF
         c = canvas.Canvas(file_path, pagesize=A4)
-        
         width, height = A4
         margin = 50
         y = height - margin
 
-        # --------------------------
-        # Title Section
-        # --------------------------
+        # -----------------------------------------
+        # TITLE SECTION
+        # -----------------------------------------
         c.setFont("Helvetica-Bold", 20)
         c.setFillColor(colors.HexColor("#182848"))
         c.drawString(margin, y, "EcoPackAI Sustainability Report")
@@ -186,25 +194,21 @@ def export_pdf():
 
         y -= 35
         c.setStrokeColor(colors.HexColor("#4b6cb7"))
-        c.setLineWidth(1)
         c.line(margin, y, width - margin, y)
         y -= 30
 
-        # --------------------------
-        # KPI SECTION (compact)
-        # --------------------------
+        # -----------------------------------------
+        # KPI SECTION
+        # -----------------------------------------
         c.setFont("Helvetica-Bold", 12)
-        c.setFillColor(colors.black)
         c.drawString(margin, y, "Key Performance Indicators")
         y -= 20
 
-        # Calculate KPIs
         avg_co2 = round(df["CO2_Emission_kg_x"].mean(), 2)
         avg_cost = round(df["Cost_USD"].mean(), 2)
         avg_strength = round(df["Tensile_Strength_MPa"].mean(), 2)
         avg_bio = round(df["Biodegradable_Binary"].mean() * 100, 2)
 
-        # KPI Rows
         kp_items = [
             ("Avg CO₂ Emission (kg)", avg_co2),
             ("Avg Cost (USD)", avg_cost),
@@ -217,46 +221,40 @@ def export_pdf():
             c.drawString(margin, y, f"{title}:   {val}")
             y -= 18
 
-        y -= 10
+        y -= 15
 
-        # PAGE BREAK IF NEEDED
-        if y < 200:
-            c.showPage()
-            y = height - margin
-
-        # --------------------------
+        # -----------------------------------------
         # TABLE SECTION
-        # --------------------------
+        # -----------------------------------------
         c.setFont("Helvetica-Bold", 12)
         c.drawString(margin, y, "Material Impact Summary")
         y -= 20
 
-        # Table column headings
         headers = ["Material", "Cost", "CO₂ (kg)", "Strength"]
         col_x = [margin, margin + 180, margin + 260, margin + 340]
 
         c.setFillColor(colors.HexColor("#4b6cb7"))
         c.roundRect(margin, y - 5, width - 2 * margin, 22, 5, fill=1)
-
         c.setFillColor(colors.white)
         c.setFont("Helvetica-Bold", 11)
+
         for i, h in enumerate(headers):
             c.drawString(col_x[i], y, h)
 
         y -= 28
-
-        # --------------------------
-        # Table rows (12 rows max per page)
-        # --------------------------
         c.setFont("Helvetica", 10)
         c.setFillColor(colors.black)
 
-        for idx, row in df.head(20).iterrows():
+        # -----------------------------------------
+        # TABLE ROWS WITH PAGE BREAK
+        # -----------------------------------------
+        for _, row in df.head(20).iterrows():
+
             if y < 80:
                 c.showPage()
                 y = height - margin
 
-                # Re-draw table header on new page
+                # Re-create table header on new page
                 c.setFont("Helvetica-Bold", 12)
                 c.drawString(margin, y, "Material Impact Summary (continued)")
                 y -= 20
@@ -265,23 +263,24 @@ def export_pdf():
                 c.roundRect(margin, y - 5, width - 2 * margin, 22, 5, fill=1)
                 c.setFillColor(colors.white)
                 c.setFont("Helvetica-Bold", 11)
-
                 for i, h in enumerate(headers):
                     c.drawString(col_x[i], y, h)
 
                 y -= 28
-                c.setFillColor(colors.black)
                 c.setFont("Helvetica", 10)
+                c.setFillColor(colors.black)
 
+            # Row values
             c.drawString(col_x[0], y, str(row["Material_Name"])[:25])
             c.drawString(col_x[1], y, str(round(row["Cost_USD"], 2)))
             c.drawString(col_x[2], y, str(round(row["CO2_Emission_kg_x"], 2)))
             c.drawString(col_x[3], y, str(round(row["Tensile_Strength_MPa"], 2)))
+
             y -= 18
 
-        # --------------------------
+        # -----------------------------------------
         # FOOTER
-        # --------------------------
+        # -----------------------------------------
         c.setFont("Helvetica", 9)
         c.setFillColor(colors.gray)
         c.drawString(margin, 40, "Generated by EcoPackAI")
@@ -289,9 +288,10 @@ def export_pdf():
 
         c.save()
 
+        # Send file for download
         return send_file(
             file_path,
-            mimetype='application/pdf',
+            mimetype="application/pdf",
             as_attachment=True,
             download_name="EcoPackAI_Professional_Report.pdf"
         )

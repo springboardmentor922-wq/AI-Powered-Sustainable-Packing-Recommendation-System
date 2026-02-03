@@ -14,30 +14,29 @@
             background: #f4f6fb;
         }
 
-
+        /* SIDEBAR */
         .sidebar {
             width: 240px;
             height: 100vh;
             background: #182848;
             color: white;
             position: fixed;
-            top: 0;
             left: 0;
+            top: 0;
             padding: 24px 18px;
             box-sizing: border-box;
         }
 
         .sidebar h3 {
-            margin-top: 0;
-            margin-bottom: 22px;
+            margin: 0 0 22px 0;
         }
 
         .sidebar a {
             display: block;
             color: #dfe6e9;
-            margin: 12px 0;
-            text-decoration: none;
             padding: 10px 12px;
+            margin-bottom: 10px;
+            text-decoration: none;
             border-radius: 6px;
             font-size: 14px;
         }
@@ -46,13 +45,14 @@
             background: rgba(255, 255, 255, 0.18);
         }
 
-
+        /* MAIN CONTENT FIX (IMPORTANT) */
         .main {
             margin-left: 260px;
+            /* keeps content away from sidebar */
             padding: 22px;
             box-sizing: border-box;
+            width: calc(100% - 260px);
         }
-
 
         .kpi-row {
             display: grid;
@@ -77,37 +77,8 @@
         .kpi-value {
             font-size: 24px;
             font-weight: bold;
-            margin-top: 6px;
             color: #182848;
         }
-
-
-        .filters {
-            display: flex;
-            gap: 14px;
-            margin-bottom: 20px;
-        }
-
-        select {
-            padding: 8px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            min-width: 160px;
-        }
-
-        button {
-            padding: 9px 14px;
-            border: none;
-            border-radius: 6px;
-            background: #4b6cb7;
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #182848;
-        }
-
 
         .grid-2 {
             display: grid;
@@ -121,14 +92,12 @@
             border-radius: 14px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             min-height: 340px;
-            box-sizing: border-box;
         }
 
         .title {
             text-align: center;
             font-weight: bold;
             margin-bottom: 12px;
-            color: #2d3436;
         }
 
         .wide {
@@ -142,12 +111,16 @@
         iframe {
             width: 100%;
             height: 420px;
-            border: none;
             border-radius: 12px;
+            border: none;
         }
 
-
         @media(max-width: 900px) {
+            .main {
+                margin-left: 0;
+                width: 100%;
+            }
+
             .grid-2 {
                 grid-template-columns: 1fr;
             }
@@ -160,18 +133,12 @@
                 grid-template-columns: 1fr 1fr;
             }
         }
-
-        @media(max-width: 650px) {
-            .kpi-row {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
 </head>
 
 <body>
 
-
+    <!-- SIDEBAR -->
     <div class="sidebar">
         <h3>EcoPackAI Dashboard</h3>
         <a href="index.html">🏠 Home</a>
@@ -179,91 +146,78 @@
         <a href="#">⚙ Settings</a>
     </div>
 
+    <!-- MAIN CONTENT WRAPPER (FIX) -->
+    <div class="main">
 
+        <h2>📦 Sustainability Insights</h2>
 
-    <h2>📦 Sustainability Insights</h2>
-
-
-    <div class="kpi-row">
-        <div class="kpi-card">
-            <div class="kpi-label">Avg CO₂ Saved</div>
-            <div id="kpi_co2" class="kpi-value">--</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-label">Avg Cost Saved</div>
-            <div id="kpi_cost" class="kpi-value">--</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-label">Avg Durability</div>
-            <div id="kpi_dur" class="kpi-value">--</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-label">Avg EcoPack Score</div>
-            <div id="kpi_score" class="kpi-value">--</div>
-        </div>
-    </div>
-
-
-    <div style="margin-bottom: 16px;">
-        <button onclick="exportExcel()">Export Excel</button>
-        <button onclick="exportPDF()">Export PDF</button>
-    </div>
-
-
-    <div class="grid-2">
-
-        <div class="card">
-            <div class="title">CO₂ Reduction Trend</div>
-            <canvas id="co2Chart"></canvas>
+        <!-- KPI CARDS -->
+        <div class="kpi-row">
+            <div class="kpi-card">
+                <div class="kpi-label">Avg CO₂ Saved</div>
+                <div id="kpi_co2" class="kpi-value">--</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Avg Cost Saved</div>
+                <div id="kpi_cost" class="kpi-value">--</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Avg Durability</div>
+                <div id="kpi_dur" class="kpi-value">--</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Avg EcoPack Score</div>
+                <div id="kpi_score" class="kpi-value">--</div>
+            </div>
         </div>
 
-        <div class="card">
-            <div class="title">Cost Savings Comparison</div>
-            <canvas id="costChart"></canvas>
+        <!-- EXPORT BUTTONS -->
+        <div style="margin-bottom: 16px;">
+            <button onclick="exportExcel()">Export Excel</button>
+            <button onclick="exportPDF()">Export PDF</button>
         </div>
 
-        <div class="card">
-            <div class="title">Durability Distribution</div>
-            <canvas id="durabilityChart"></canvas>
+        <!-- CHART GRID -->
+        <div class="grid-2">
+
+            <div class="card">
+                <div class="title">CO₂ Reduction Trend</div>
+                <canvas id="co2Chart"></canvas>
+            </div>
+
+            <div class="card">
+                <div class="title">Cost Savings Comparison</div>
+                <canvas id="costChart"></canvas>
+            </div>
+
+            <div class="card">
+                <div class="title">Durability Distribution</div>
+                <canvas id="durabilityChart"></canvas>
+            </div>
+
+            <div class="card">
+                <div class="title">Biodegradable Split</div>
+                <canvas id="bioChart"></canvas>
+            </div>
+
+            <div class="card wide">
+                <div class="title">EcoPack Score Trend</div>
+                <canvas id="scoreChart"></canvas>
+            </div>
+
+            <div class="card wide">
+                <div class="title">Power BI Embedded Dashboard</div>
+                <iframe src="https://app.powerbi.com/view?r=YOUR_EMBED_URL"></iframe>
+            </div>
+
         </div>
 
-        <div class="card">
-            <div class="title">Biodegradable Split</div>
-            <canvas id="bioChart"></canvas>
-        </div>
-
-        <div class="card wide">
-            <div class="title">EcoPack Score Trend</div>
-            <canvas id="scoreChart"></canvas>
-        </div>
-
-
-        <div class="card wide">
-            <div class="title">Power BI Embedded Dashboard</div>
-            <iframe src="https://app.powerbi.com/view?r=YOUR_EMBED_URL"></iframe>
-        </div>
-
-    </div>
-    </div>
+    </div> <!-- END MAIN -->
 
     <script>
-        async function loadFilters() {
-            const res = await fetch("http://127.0.0.1:5000/api/dashboard/filters");
-            const f = await res.json();
-            filterCategory.innerHTML = "<option>All Categories</option>";
-            filterMaterial.innerHTML = "<option>All Materials</option>";
-            f.categories.forEach(c => filterCategory.innerHTML += `<option>${c}</option>`);
-            f.materials.forEach(m => filterMaterial.innerHTML += `<option>${m}</option>`);
-        }
-
-        loadFilters();
-
-
-
         async function loadDashboard() {
             const res = await fetch("http://127.0.0.1:5000/api/dashboard");
             const data = await res.json();
-
 
             document.getElementById("kpi_co2").innerHTML = (data.co2_saved.reduce((a, b) => a + b) / data.co2_saved.length).toFixed(1);
             document.getElementById("kpi_cost").innerHTML = "$" + (data.cost_saved.reduce((a, b) => a + b) / data.cost_saved.length).toFixed(1);
@@ -278,8 +232,6 @@
         }
 
         loadDashboard();
-
-
 
         function exportExcel() {
             const a = document.createElement("a");
