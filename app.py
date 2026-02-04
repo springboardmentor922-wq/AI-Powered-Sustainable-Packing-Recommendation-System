@@ -4,19 +4,13 @@ import pandas as pd
 import traceback
 
 from EcoPackAI import ai_material_ranking
-from flask import send_file
-from reportlab.pdfgen import canvas
-
 from flask import render_template
-
-
 from flask import send_file
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from reportlab.lib import colors
 from reportlab.lib.units import inch
 from datetime import datetime
-import pandas as pd
 import os
 
 app = Flask(__name__)

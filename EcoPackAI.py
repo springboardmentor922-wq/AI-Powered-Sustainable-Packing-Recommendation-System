@@ -8,26 +8,32 @@ from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 
 
-
+#-------------------------------------------------
+# DATA CLEANING FUNCTION
+#-------------------------------------------------
 
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     df.columns = df.columns.str.strip().str.replace(" ", "_")
 
     num_cols = df.select_dtypes(include=[np.number]).columns
-    cat_cols = df.select_dtypes(include=["object", "string"]).columns  # ✅ FIX
+    cat_cols = df.select_dtypes(include=["object", "string"]).columns  
 
     df[num_cols] = df[num_cols].fillna(df[num_cols].median())
     df[cat_cols] = df[cat_cols].fillna("Unknown")
 
     return df
 
-
+#-------------------------------------------------
+# LOAD & CLEAN DATA
+#-------------------------------------------------
 
 
 orders_df = clean_data(pd.read_csv("materials.cvs1.csv"))
 materials_df = clean_data(pd.read_csv("materials_cvs2.csv"))
 
-
+#-------------------------------------------------
+# FEATURE ENGINEERING
+#-------------------------------------------------
 
 
 materials_df["Biodegradable_Binary"] = (
@@ -53,7 +59,9 @@ materials_df["Material_Suitability_Score"] = (
 
 materials_df.to_csv("cleaned_materials_data.csv", index=False)
 
-
+#-------------------------------------------------
+# MERGE DATASETS
+#-------------------------------------------------
 
 
 packaging_mapping = {
@@ -85,7 +93,9 @@ merged_df = merged_df.rename(columns={
 
 merged_df.to_csv("cleaned_and_merged_eco_data.csv", index=False)
 
-
+#-------------------------------------------------
+# MODEL TRAINING
+#-------------------------------------------------
 
 
 features = [
