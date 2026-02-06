@@ -125,6 +125,36 @@ def health():
 def export_excel():
     try:
         import os
+        import pandas as pd
+
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+        csv_path = os.path.join(BASE_DIR, "cleaned_and_merged_eco_data.csv")
+        if not os.path.isfile(csv_path):
+            return jsonify({"status": "error", "message": "CSV file not found"}), 404
+
+        df = pd.read_csv(csv_path)
+
+        export_dir = os.path.join(BASE_DIR, "exports")
+        os.makedirs(export_dir, exist_ok=True)
+
+        file_path = os.path.join(export_dir, "EcoPackAI_Report.xlsx")
+
+        df.to_excel(file_path, index=False, engine="openpyxl")
+
+        return send_file(
+            file_path,
+            as_attachment=True,
+            download_name="EcoPackAI_Report.xlsx",
+            mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({"status": "error", "message": str(e)}), 500
+    try:
+        import os
 
         df = pd.read_csv("cleaned_and_merged_eco_data.csv")
 
