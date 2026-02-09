@@ -32,6 +32,8 @@ The system analyzes the trade-offs between three competing factors:
 ---
 
 ## 📁 Project Structure
+
+
 ├── app.py
 ├── templates/
 │ ├── index.html
@@ -44,22 +46,23 @@ The system analyzes the trade-offs between three competing factors:
 └── README.md
 
 
+
 ---
 
 ## ⚙️ How to Run Locally
 
-1. Clone the Repository
-```bash
+1️⃣ Clone the Repository
 git clone https://github.com/springboardmentor922-wq/AI-Powered-Sustainable-Packing-Recommendation-System.git
 cd AI-Powered-Sustainable-Packing-Recommendation-System
 
-2. Install Dependencies
+2️⃣ Install Dependencies
  pip install -r requirements.txt
 
-3. Run the Application
+3️⃣ Run the Application
  python app.py
 
-4. Open in Browser
+4️⃣ Open in Browser
 http://127.0.0.1:5000
+
 
 
