@@ -8,7 +8,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #333;
-    background: linear-gradient(135deg, #5c8477 0%, #8e8a84 100%);
+    background: linear-gradient(135deg, #5c8477 0%, #878e84 100%);
     min-height: 100vh;
     padding: 20px;
 }
@@ -23,7 +23,7 @@ body {
 }
 
 header {
-    background: linear-gradient(135deg, #5a6d61, #4f5f55);
+    background: linear-gradient(135deg, #5a6d61, #217740);
     color: white;
     padding: 40px 30px;
     text-align: center;
