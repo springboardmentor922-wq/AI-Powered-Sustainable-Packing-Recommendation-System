@@ -207,3 +207,14 @@ print(
     .sort_values(by='Material_Suitability_Score', ascending=False)
     .head()
 )
+
+# =========================
+# SAVE PROCESSED MATERIALS DATA
+# =========================
+
+materials_df.to_excel("data/materials_processed.xlsx", index=False)
+
+print("\nProcessed materials dataset saved successfully.")
+
+
+

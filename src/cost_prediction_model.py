@@ -55,3 +55,14 @@ print("\nCost Prediction Model Evaluation:")
 print(f"MAE  : {mae:.2f}")
 print(f"RMSE : {rmse:.2f}")
 print(f"R2   : {r2:.3f}")
+
+
+import pickle
+
+print(type(rf_model))
+print(hasattr(rf_model, "predict"))
+
+with open("cost_model.pkl", "wb") as f:
+    pickle.dump(rf_model, f)
+
+print("Cost model saved successfully")
