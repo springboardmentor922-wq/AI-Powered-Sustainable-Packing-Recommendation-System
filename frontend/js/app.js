@@ -1,6 +1,6 @@
 // ============================================================
-// 🌱 ECOPACKAI - MAIN APPLICATION (REFACTORED)
-// Modern, Clean, Maintainable JavaScript Architecture
+// 🌱 ECOPACKAI - SIMPLIFIED VERSION (NO LOGIN)
+// Session-based with 3 recommendations per hour limit
 // ============================================================
 
 // ============================================================
@@ -14,19 +14,12 @@ const CONFIG = {
     
     ROUTES: {
         AUTH_STATUS: '/api/auth/status',
-        LOGOUT: '/api/auth/logout',
         RECOMMEND: '/api/recommend',
         GENERATE_PDF: '/api/generate-pdf'
     },
     
-    PAGES: {
-        LOGIN: 'login.html',
-        MAIN: 'index.html'
-    },
-    
     TIMINGS: {
         SPLASH_DURATION: 2000,
-        REDIRECT_DELAY: 1000,
         TOAST_DURATION: 4000
     },
     
@@ -37,17 +30,17 @@ const CONFIG = {
 };
 
 // ============================================================
-// 🎯 DOM CACHE (Performance Optimization)
+// 🎯 DOM CACHE
 // ============================================================
 const DOM = {
     get generateBtn() { return document.getElementById('generateBtn'); },
-    get logoutBtn() { return document.getElementById('logoutBtn'); },
     get resultsSection() { return document.getElementById('resultsSection'); },
     get toast() { return document.getElementById('toast'); },
     get splashScreen() { return document.getElementById('splashScreen'); },
     get mainApp() { return document.getElementById('mainApp'); },
     get fragSlider() { return document.getElementById('fragility'); },
-    get fragValue() { return document.getElementById('fragilityValue'); }
+    get fragValue() { return document.getElementById('fragilityValue'); },
+    get sessionInfo() { return document.getElementById('sessionInfo'); }
 };
 
 // ============================================================
@@ -55,7 +48,8 @@ const DOM = {
 // ============================================================
 const State = {
     isGenerating: false,
-    lastRecommendations: null
+    lastRecommendations: null,
+    sessionInfo: null
 };
 
 // ============================================================
@@ -64,7 +58,7 @@ const State = {
 const App = {
     async init() {
         try {
-            await this.checkAuthentication();
+            await this.checkSession();
             this.setupEventListeners();
             this.hideSplash();
             Logger.info('Application initialized successfully');
@@ -73,43 +67,34 @@ const App = {
         }
     },
     
-    // ----------------------------------------------------------
-    // 🔐 Authentication
-    // ----------------------------------------------------------
-    async checkAuthentication() {
+    async checkSession() {
         try {
             const response = await API.get(CONFIG.ROUTES.AUTH_STATUS);
-            
-            if (!response.ok) {
-                this.redirectToLogin();
-                return;
-            }
-            
             const data = await response.json();
             
-            if (!data.authenticated) {
-                this.redirectToLogin();
-            }
+            State.sessionInfo = data;
+            this.updateSessionDisplay();
+            
+            Logger.info('Session info:', data);
         } catch (error) {
-            Logger.error('Authentication check failed', error);
-            UI.showToast('Please login to continue', 'error');
-            setTimeout(() => this.redirectToLogin(), CONFIG.TIMINGS.REDIRECT_DELAY);
+            Logger.error('Session check failed', error);
         }
     },
     
-    redirectToLogin() {
-        window.location.href = CONFIG.PAGES.LOGIN;
+    updateSessionDisplay() {
+        if (!DOM.sessionInfo || !State.sessionInfo) return;
+        
+        const { recommendations_used = 0, recommendations_remaining = 3 } = State.sessionInfo;
+        
+        DOM.sessionInfo.innerHTML = `
+            <div class="session-badge">
+                📊 Recommendations: ${recommendations_used}/3 used | ${recommendations_remaining} remaining
+            </div>
+        `;
     },
     
-    // ----------------------------------------------------------
-    // 🎮 Event Listeners Setup
-    // ----------------------------------------------------------
     setupEventListeners() {
-        // Primary actions
         DOM.generateBtn?.addEventListener('click', () => RecommendationController.generate());
-        DOM.logoutBtn?.addEventListener('click', () => AuthController.logout());
-        
-        // UI components
         this.setupFragilitySlider();
         this.setupModeCards();
     },
@@ -125,13 +110,8 @@ const App = {
     setupModeCards() {
         document.querySelectorAll('.mode-card').forEach(card => {
             card.addEventListener('click', () => {
-                // Remove active from all cards
                 document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('active'));
-                
-                // Add active to clicked card
                 card.classList.add('active');
-                
-                // Check radio button
                 const radio = card.querySelector('input[type="radio"]');
                 if (radio) radio.checked = true;
             });
@@ -180,38 +160,10 @@ const API = {
 };
 
 // ============================================================
-// 🎮 CONTROLLERS
+// 🤖 RECOMMENDATION CONTROLLER
 // ============================================================
-
-// ----------------------------------------------------------
-// 🔐 Authentication Controller
-// ----------------------------------------------------------
-const AuthController = {
-    async logout() {
-        try {
-            const response = await API.post(CONFIG.ROUTES.LOGOUT);
-            
-            if (response.ok) {
-                UI.showToast('Logged out successfully', 'success');
-                setTimeout(() => {
-                    window.location.href = CONFIG.PAGES.LOGIN;
-                }, CONFIG.TIMINGS.REDIRECT_DELAY);
-            } else {
-                throw new Error('Logout failed');
-            }
-        } catch (error) {
-            Logger.error('Logout error', error);
-            UI.showToast('Logout failed', 'error');
-        }
-    }
-};
-
-// ----------------------------------------------------------
-// 🤖 Recommendation Controller
-// ----------------------------------------------------------
 const RecommendationController = {
     async generate() {
-        // Prevent duplicate requests
         if (State.isGenerating) return;
         
         State.isGenerating = true;
@@ -219,43 +171,50 @@ const RecommendationController = {
         UI.Loading.show();
         
         try {
-            // Collect form data
             const formData = this.collectFormData();
             
-            // Validate
             if (!this.validateFormData(formData)) {
                 UI.showToast('Please select category and shipping mode', 'error');
                 return;
             }
             
-            // Make API request
             const response = await API.post(CONFIG.ROUTES.RECOMMEND, formData);
             
-            // Handle session expiry
-            if (response.status === 401) {
-                UI.showToast('Session expired. Please login again.', 'error');
-                setTimeout(() => App.redirectToLogin(), CONFIG.TIMINGS.REDIRECT_DELAY);
+            // Handle rate limit
+            if (response.status === 429) {
+                const error = await response.json();
+                UI.showToast(error.error || 'Rate limit reached. Please wait.', 'error');
                 return;
             }
             
-            // Handle errors
             if (!response.ok) {
                 const error = await response.json();
                 throw new Error(error.error || 'Failed to generate recommendations');
             }
             
-            // Process successful response
             const result = await response.json();
             
-            // Store recommendations
+            // Update session info
+            if (result.session_info) {
+                State.sessionInfo = {
+                    recommendations_used: result.session_info.used,
+                    recommendations_remaining: result.session_info.remaining
+                };
+                App.updateSessionDisplay();
+            }
+            
             State.lastRecommendations = {
                 data: result.recommendations,
                 sortBy: formData.sort_by
             };
             
-            // Display results
             UI.Results.display(result.recommendations, formData.sort_by);
-            UI.showToast('Recommendations generated successfully!', 'success');
+            
+            const remaining = result.session_info?.remaining || 0;
+            UI.showToast(
+                `✅ Success! ${remaining} recommendation${remaining !== 1 ? 's' : ''} remaining this hour.`,
+                'success'
+            );
             
         } catch (error) {
             Logger.error('Generation error', error);
@@ -288,9 +247,9 @@ const RecommendationController = {
     }
 };
 
-// ----------------------------------------------------------
-// 📄 PDF Controller
-// ----------------------------------------------------------
+// ============================================================
+// 📄 PDF CONTROLLER
+// ============================================================
 const PDFController = {
     async generate() {
         try {
@@ -313,13 +272,11 @@ const PDFController = {
     downloadBlob(blob, filename) {
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
-        
         link.href = url;
         link.download = filename;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        
         URL.revokeObjectURL(url);
     },
     
@@ -333,13 +290,9 @@ const PDFController = {
 // 🎨 UI COMPONENTS
 // ============================================================
 const UI = {
-    // ----------------------------------------------------------
-    // Button States
-    // ----------------------------------------------------------
     Button: {
         setLoading(button, isLoading) {
             if (!button) return;
-            
             button.disabled = isLoading;
             button.innerHTML = isLoading 
                 ? '⏳ Generating...' 
@@ -347,9 +300,6 @@ const UI = {
         }
     },
     
-    // ----------------------------------------------------------
-    // Loading Overlay
-    // ----------------------------------------------------------
     Loading: {
         show() {
             if (document.getElementById('loadingOverlay')) return;
@@ -371,15 +321,11 @@ const UI = {
         }
     },
     
-    // ----------------------------------------------------------
-    // Results Display
-    // ----------------------------------------------------------
     Results: {
         display(recommendations, sortBy) {
             if (!DOM.resultsSection || !recommendations?.length) return;
             
             DOM.resultsSection.classList.remove('hidden');
-            
             const [best, ...others] = recommendations;
             
             DOM.resultsSection.innerHTML = `
@@ -388,12 +334,10 @@ const UI = {
                 ${this.renderTable(recommendations)}
             `;
             
-            // Attach PDF button listener
             document.getElementById('generatePdfBtn')?.addEventListener('click', 
                 () => PDFController.generate()
             );
             
-            // Scroll to results
             DOM.resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         },
         
@@ -477,7 +421,6 @@ const UI = {
             `;
         },
         
-        // XSS Protection
         escape(str) {
             const div = document.createElement('div');
             div.textContent = str;
@@ -485,9 +428,6 @@ const UI = {
         }
     },
     
-    // ----------------------------------------------------------
-    // Toast Notifications
-    // ----------------------------------------------------------
     showToast(message, type = 'info') {
         const toast = DOM.toast;
         if (!toast) return;
@@ -523,6 +463,6 @@ const Logger = {
 // 🎬 APPLICATION START
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
-    Logger.info('Starting EcoPackAI application...');
+    Logger.info('Starting EcoPackAI application (No Login Mode)...');
     App.init();
 });
