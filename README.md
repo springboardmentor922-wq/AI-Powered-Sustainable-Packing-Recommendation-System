@@ -5,7 +5,7 @@
 
 ## 🌐 Live Demo
 
-Check out the deployed frontend here: [EcoPackAI Live App](http://ecopackai-web.vercel.app/)
+Check out the deployed frontend here: [EcoPackAI Live App](https://ecopackai-web.vercel.app/)
 
 ---
 
