@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EcoPackAI Recommendation System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">EcoPackAI Material Recommendation</h2>
+
+    <div class="card p-4 shadow">
+        <div class="mb-3">
+            <label class="form-label">Shipping Distance (km)</label>
+            <input type="number" id="distance" class="form-control" placeholder="Enter distance">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Packaging Type</label>
+            <input type="text" id="packaging" class="form-control" placeholder="Enter packaging type (e.g. Electronics)">
+        </div>
+
+        <button class="btn btn-primary w-100" onclick="getRecommendation()">Get Recommendations</button>
+    </div>
+
+    <div class="mt-5">
+        <h4>Top Recommended Materials</h4>
+        <table class="table table-bordered mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>Material Name</th>
+                    <th>Ranking Score</th>
+                </tr>
+            </thead>
+            <tbody id="resultTable"></tbody>
+        </table>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

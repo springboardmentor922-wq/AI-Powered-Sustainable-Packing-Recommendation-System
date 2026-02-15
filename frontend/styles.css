@@ -1,0 +1,11 @@
+body {
+    background-color: #f4f6f9;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 12px;
+}
