@@ -69,35 +69,85 @@ def get_recommendations(weight_kg, volume_m3, distance_km, shipping_mode, weight
             test_input['CO2_Emission_kg'] = material['CO2_Emission_kg']
             test_input['Biodegradable'] = material['Biodegradable']
             
-            # Encode and predict
-            test_encoded = test_input.copy()
-            # Manual feature engineering
-            test_encoded['Shipping_Mode_Road'] = 1 if test_input['Shipping_Mode'].iloc[0] == 'Road' else 0
-            test_encoded['Material_CO2_Factor'] = test_input['CO2_Emission_kg']
+            # Model is producing invalid constant output, using formula-based estimation
+            # CO2 = (Weight * Material_CO2) + (Weight * Distance * Mode_Factor)
+            # Cost = (Weight * Material_Cost) + (Weight * Distance * Mode_Cost_Factor)
             
-            # Remove unused category encoding if it causes issues, or keep if needed for other reasons (but seems unused)
-            # test_encoded['Category'] = ... (Skipping to avoid errors)
+            # Factors per kg/km
+            mode_co2_factors = {
+                'Air': 0.00113,
+                'Road': 0.00018,
+                'Rail': 0.00006,
+                'Sea': 0.00002
+            }
+            mode_cost_factors = {
+                'Air': 0.004,
+                'Road': 0.0015,
+                'Rail': 0.0008,
+                'Sea': 0.0004
+            }
             
-            # Ensure all required features exist
-            for feature in models.co2_feature_order:
-                if feature not in test_encoded.columns:
-                    test_encoded[feature] = 0
+            shipping_co2_factor = mode_co2_factors.get(shipping_mode, 0.00018)
+            shipping_cost_factor = mode_cost_factors.get(shipping_mode, 0.0015)
             
-            co2_pred = models.co2_model.predict(test_encoded[models.co2_feature_order])[0]
-            cost_pred = models.cost_model.predict(test_encoded[models.cost_feature_order])[0]
-            combined_score = (weight_co2 * co2_pred + weight_cost * cost_pred)
+            # Calculate Production CO2
+            material_co2 = weight_kg * material['CO2_Emission_kg']
+            # Calculate Shipping CO2
+            transport_co2 = weight_kg * distance_km * shipping_co2_factor
+            
+            co2_pred = material_co2 + transport_co2
+            
+            # Calculate Material Cost
+            material_cost = weight_kg * material['Cost_per_kg']
+            # Calculate Shipping Cost
+            transport_cost = weight_kg * distance_km * shipping_cost_factor
+            
+            cost_pred = material_cost + transport_cost
             
             recommendations.append({
                 'Material_Name': material['Material_Name'],
                 'Category': material['Category'],
-                'Predicted_CO2_kg': round(co2_pred, 3),
-                'Predicted_Cost_USD': round(cost_pred, 2),
-                'Biodegradable': bool(material['Biodegradable']),
-                'Combined_Score': round(combined_score, 3)
+                'Predicted_CO2_kg': float(co2_pred),
+                'Predicted_Cost_USD': float(cost_pred),
+                'Biodegradable': bool(material['Biodegradable'])
             })
         
         recommendations_df = pd.DataFrame(recommendations)
-        return recommendations_df.sort_values('Combined_Score').head(5).to_dict('records')
+        
+        if not recommendations_df.empty:
+            # Normalize scores
+            co2_min = recommendations_df['Predicted_CO2_kg'].min()
+            co2_max = recommendations_df['Predicted_CO2_kg'].max()
+            cost_min = recommendations_df['Predicted_Cost_USD'].min()
+            cost_max = recommendations_df['Predicted_Cost_USD'].max()
+            
+            # Helper for safe division
+            def normalize(val, min_val, max_val):
+                if max_val == min_val:
+                    return 0.0
+                return (val - min_val) / (max_val - min_val)
+            
+            recommendations_df['CO2_Score'] = recommendations_df['Predicted_CO2_kg'].apply(
+                lambda x: normalize(x, co2_min, co2_max)
+            )
+            recommendations_df['Cost_Score'] = recommendations_df['Predicted_Cost_USD'].apply(
+                lambda x: normalize(x, cost_min, cost_max)
+            )
+            
+            # Calculate combined score
+            recommendations_df['Combined_Score'] = (
+                weight_co2 * recommendations_df['CO2_Score'] + 
+                weight_cost * recommendations_df['Cost_Score']
+            )
+            
+            # Round values for display
+            recommendations_df['Predicted_CO2_kg'] = recommendations_df['Predicted_CO2_kg'].round(3)
+            recommendations_df['Predicted_Cost_USD'] = recommendations_df['Predicted_Cost_USD'].round(2)
+            recommendations_df['Combined_Score'] = recommendations_df['Combined_Score'].round(3)
+            
+            return recommendations_df.sort_values('Combined_Score').head(5).to_dict('records')
+        
+        return []
     
     except Exception as e:
         print(f"Error generating recommendations: {e}")
@@ -111,6 +161,7 @@ def home():
 @app.route('/recommend', methods=['POST'])
 def recommend():
     """API endpoint for packaging recommendations"""
+    print("DEBUG: Handling /recommend request", flush=True)
     try:
         if models is None:
             return jsonify({'error': 'Models not loaded. Please check server configuration.'}), 500
@@ -184,4 +235,5 @@ if __name__ == '__main__':
     print("=" * 50)
     
     # Run the Flask app
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5001)
+
