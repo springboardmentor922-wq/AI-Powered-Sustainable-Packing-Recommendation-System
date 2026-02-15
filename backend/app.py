@@ -69,9 +69,9 @@ CORS(app,
          "http://localhost:3000",
          "http://127.0.0.1:5500",
          "https://ai-powered-sustainable-packaging-jrsk.onrender.com",
-         "https://ecopackai-web.vercel.app/",
-         "https://*.vercel.app"
+         "https://ecopackai-web.vercel.app"
      ])
+
 
 # 🔥 UPDATED RATE LIMIT
 limiter = Limiter(
