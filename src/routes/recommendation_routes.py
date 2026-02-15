@@ -1,5 +1,3 @@
-print("ROUTES FILE LOADED")
-
 from flask import Blueprint, request, jsonify
 from recommendation_engine import get_recommendations
 
