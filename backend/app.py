@@ -58,20 +58,24 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv("APP_SECRET_KEY", secrets.token_urlsafe(32))
 
-# 🔥 UPDATED SESSION CONFIG
+# 🔥 UPDATED SESSION CONFIG FOR CROSS-ORIGIN
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(hours=2)  # 2 HOURS
 app.config["SESSION_COOKIE_HTTPONLY"] = True
-app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+app.config["SESSION_COOKIE_SAMESITE"] = "None"  # ← Changed from "Lax"
+app.config["SESSION_COOKIE_SECURE"] = True      # ← Added (required for SameSite=None)
 
 CORS(app, 
      supports_credentials=True,
      origins=[
          "http://localhost:3000",
+         "http://localhost:5500",
          "http://127.0.0.1:5500",
-         "https://ai-powered-sustainable-packaging-jrsk.onrender.com",
-         "https://ecopackai-web.vercel.app"
-     ])
-
+         "http://127.0.0.1:3000",
+         "https://ecopackai-web.vercel.app",
+         "https://*.vercel.app"
+     ],
+     allow_headers=["Content-Type"],
+     max_age=3600)
 
 # 🔥 UPDATED RATE LIMIT
 limiter = Limiter(
@@ -89,10 +93,6 @@ logger = logging.getLogger("EcoPackAI")
 # ==========================================================
 MAX_RECOMMENDATIONS_PER_HOUR = 5
 SESSION_DURATION_HOURS = 2
-
-@app.route("/")
-def index():
-    return {"status": "Backend is live", "timestamp": datetime.utcnow().isoformat()}
 
 # ==========================================================
 # 🔥 FIXED SESSION INIT - NOW ENSURES ALL KEYS EXIST
@@ -296,9 +296,15 @@ def recommend():
 @app.route("/api/generate-pdf", methods=["POST"])
 def generate_pdf():
     """Generate PDF report from last recommendation"""
+    
+    # Debug logging
+    logger.info(f"PDF request - Session ID: {session.get('session_id', 'NONE')}")
+    logger.info(f"PDF request - Has recommendations: {bool(session.get('last_recommendation'))}")
+    
     data = session.get("last_recommendation")
     if not data:
-        return jsonify({"error": "No recommendation available"}), 400
+        logger.warning("No recommendation data found in session for PDF generation")
+        return jsonify({"error": "No recommendation available. Please generate recommendations first."}), 400
 
     buffer = BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=letter)
@@ -373,7 +379,4 @@ if __name__ == "__main__":
     logger.info(f"Recommendation Limit: {MAX_RECOMMENDATIONS_PER_HOUR} per Hour")
     logger.info(f"ML Models Available: {ML_AVAILABLE}")
     logger.info("=" * 60)
-    
-    # For local development
-    port = int(os.environ.get("PORT", 5000))
-    app.run(debug=False, host="0.0.0.0", port=port)
+    app.run(debug=True, host="0.0.0.0", port=5000)
