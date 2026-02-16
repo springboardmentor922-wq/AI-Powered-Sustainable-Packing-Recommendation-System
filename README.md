@@ -1,172 +1,87 @@
-# EcoPackAI
-# 🌱 EcoPackAI – Sustainable Material Recommendation System
+## EcoPackAI (Flask App)
 
-EcoPackAI is a machine learning–based project designed to recommend eco-friendly and cost-effective packaging materials by analyzing material properties such as density, tensile strength, cost, CO₂ emissions, and biodegradability.
+This app provides:
+- **REST APIs** (secured via API key + consistent JSON responses)
+- **Web UI** (HTML/CSS/Bootstrap) with a product input form + ranked recommendations table
 
-The system predicts **material cost** and **CO₂ emissions**, computes a **final sustainability ranking**, and visualizes trade-offs to support data-driven material selection.
+### 1) Setup
 
----
+Install dependencies:
 
-## 🚀 Features
-
-- 📊 Data preprocessing and feature engineering
-- 🤖 Machine learning models:
-  - Random Forest Regressor (Cost Prediction)
-  - XGBoost Regressor (CO₂ Emission Prediction)
-- 📈 Model evaluation using RMSE, MAE, and R²
-- 🧮 Composite sustainability ranking score
-- 📉 Visual analysis of cost vs CO₂ trade-offs
-- 🧪 Clean, modular, and scalable code structure
-
----
-
-## 🗂 Project Structure
-EcoPackAI/
-│
-├── data/
-│ └── materials_database_600.xlsx
-│
-├── src/
-│ ├── main.py
-│ ├── preprocessing.py
-│ ├── models.py
-│ └── evaluation.py
-│
-├── requirements.txt
-└── README.md
-
-
----
-Code 
-
-## 🧠 Machine Learning Workflow
-
-1. **Data Loading**
-   - Reads material data from Excel file
-
-2. **Data Preprocessing**
-   - Handles missing values
-   - Encodes categorical features
-   - Performs feature engineering
-
-3. **Model Training**
-   - Random Forest for cost prediction
-   - XGBoost for CO₂ emission prediction
-
-4. **Evaluation**
-   - RMSE
-   - MAE
-   - R² Score
-
-5. **Final Ranking**
-   - Combines predictions with sustainability metrics
-
----
-
-## 🧪 Feature Engineering
-
-The following custom features are created:
-
-- **CO2_Impact_Index**  
-  `CO2_Emission_kg / Density_kg_m3`
-
-- **Cost_Efficiency_Index**  
-  `Tensile_Strength_MPa / Cost_per_kg`
-
-- **Material_Suitability_Score**  
-  `(Biodegradable × 2)`
-
-- **Cost_Efficiency_Index**
-   "CO2_Impact_Index"
-
-
----
-
-## 📊 Visualizations
-
-- Scatter plot: **Predicted Cost vs Predicted CO₂**
-- Histogram: **Distribution of Predicted Cost**
-
-These plots help identify optimal materials that balance sustainability and affordability.
-
----
-
-## ⚙️ Installation & Setup
-
-### 1️⃣ Clone the repository
 ```bash
-git clone <repository-url>
-cd EcoPackAI
-
-Install Dependencies 
 pip install -r requirements.txt
+```
 
-Run the Project 
-cd src 
-python main.py
+If your dataset CSV is not located at `ML/dataset_with_material_references.csv`, set:
+- `ECOPACKAI_DATASET_PATH` = full path to the CSV
 
+### 2) Run
 
-📦 Dependencies
+```bash
+python api_app.py
+```
 
-Python 3.8+
+Open UI:
+- `http://localhost:5000/`
 
-pandas
+### 3) Environment variables
 
-numpy
+- `ECOPACKAI_API_KEY` (default: `change-me`)
+- `DATABASE_URL` (default: `sqlite:///ecopackai.db`)
+  - For PostgreSQL, set: `postgresql://user:password@localhost:5432/ecopackai`
 
-matplotlib
+### 4) REST API endpoints (JSON)
 
-seaborn
+All API endpoints require header:
+- `X-API-KEY: <your key>`
 
-scikit-learn
+#### Create product
+- `POST /api/products`
 
-xgboost
+```json
+{
+  "name": "Milk 1L",
+  "category": "DAIRY",
+  "packaging_format": "BOTTLE",
+  "weight_kg": 1.0,
+  "budget_per_kg": 400,
+  "max_co2_kg": 2.5,
+  "shelf_life_days": 180
+}
+```
 
-openpyxl
+#### Get recommendations
+- `POST /api/recommendations`
 
-📌 Use Cases
+Option A (stored product):
+```json
+{ "product_id": 1, "top_n": 5 }
+```
 
-Sustainable packaging material selection
+Option B (ad-hoc):
+```json
+{
+  "category": "DAIRY",
+  "weight_kg": 1.0,
+  "budget_per_kg": 400,
+  "max_co2_kg": 2.5,
+  "shelf_life_days": 180,
+  "top_n": 5
+}
+```
 
-Green manufacturing analysis
+#### Environmental score
+- `POST /api/environmental-score`
 
-Cost vs environmental impact optimization
+```json
+{ "material_name": "Recycled PET Bottle" }
+```
 
-Academic and industrial research
+### 5) UI flow
 
-🔮 Future Enhancements
+- Go to `/`
+- Fill product parameters
+- Submit to see:
+  - Top pick summary cards
+  - Ranking table with comparison metrics (AI score, predicted cost, predicted CO₂, sustainability %, environmental score)
 
-🌐 Web application using Streamlit or Flask
-
-💾 Model persistence with joblib
-
-📊 Interactive dashboards
-
-☁️ Cloud deployment
-
-🔍 User-defined material constraints
-
-👤 Author
-
-Chandramouli Garikina
-Data Science & Machine Learning Enthusiast
-
-📄 License
-
-This project is for educational and research purposes.
-
-
----
-
-If you want, I can also:
-- 🔹 Customize this for **GitHub portfolio**
-- 🔹 Add **badges (Python, ML, License)**
-- 🔹 Rewrite it in **resume-friendly format**
-- 🔹 Create a **project report (PDF)**
-
-Just tell me 😊
-
-
-
-![alt text](image.png)
-![alt text](image-1.png)

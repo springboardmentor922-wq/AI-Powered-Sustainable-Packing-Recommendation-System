@@ -1,0 +1,81 @@
+:root {
+  --forest: #0b5d3b;
+  --forest-2: #0f7a4d;
+  --forest-subtle: #e7f5ee;
+}
+
+.bg-forest {
+  background: linear-gradient(90deg, var(--forest), var(--forest-2));
+}
+
+.btn-forest {
+  background-color: var(--forest);
+  border-color: var(--forest);
+}
+
+.btn-forest:hover,
+.btn-forest:focus {
+  background-color: #094e31;
+  border-color: #094e31;
+}
+
+.text-forest {
+  color: var(--forest) !important;
+}
+
+.bg-forest-subtle {
+  background-color: var(--forest-subtle) !important;
+}
+
+.hero-card {
+  background: radial-gradient(
+      1000px circle at 10% 10%,
+      rgba(11, 93, 59, 0.12),
+      transparent 55%
+    ),
+    radial-gradient(
+      900px circle at 90% 40%,
+      rgba(15, 122, 77, 0.10),
+      transparent 55%
+    ),
+    #ffffff;
+}
+
+.mini-card {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 14px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.mini-title {
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.mini-text {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.metric-pill {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: #ffffff;
+  min-width: 150px;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.1;
+}
+
+.metric-value {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #111827;
+}
+

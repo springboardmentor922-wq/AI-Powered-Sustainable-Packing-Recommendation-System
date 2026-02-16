@@ -1,0 +1,62 @@
+Metric,Value
+File_Name,Eco_Friendly_Materials_India_Adapted_9000_Records.xlsx
+Total_Records,9000
+Total_Features,30
+Total_Data_Points,270000
+Primary_Attributes_Fixed,"Tensile_Strength_MPa, Weight_Capacity_kg, Biodegradability_Score, CO2_Emission_Score, Recyclability_Percentage"
+Record_Country_Context,India
+Currency,INR (₹)
+Indian_Regions,"North India, South India, West India, Central India, East India"
+Data_Completeness,100%
+Missing_Values,0
+Duplicate_Records,0
+Supports_ML_Use_Cases,"Recommendation, Regression, Ranking, Classification"
+New_India_Specific_Fields,"GST_Applicable, Indian_Standard"
+Target_Domain,"Eco-friendly and biodegradable packaging materials for Indian food/FMCG"
+Tensile_Strength_Min_MPa,6.78
+Tensile_Strength_Max_MPa,95.31
+Tensile_Strength_Mean_MPa,32.93
+Weight_Capacity_Min_kg,20.41
+Weight_Capacity_Max_kg,126.00
+Weight_Capacity_Mean_kg,52.96
+Biodegradability_Min_Score,52.50
+Biodegradability_Max_Score,100.00
+Biodegradability_Mean_Score,91.93
+CO2_Emission_Min_Score,54.20
+CO2_Emission_Max_Score,100.00
+CO2_Emission_Mean_Score,78.80
+Recyclability_Min_Percentage,32.00
+Recyclability_Max_Percentage,100.00
+Recyclability_Mean_Percentage,72.35
+Cost_Range_INR,₹200 - ₹1,200/kg
+Cost_Average_INR,₹697.08/kg
+Material_Types_Count,30
+Application_Types_Count,15
+Manufacturing_Methods_Count,9
+Additives_Types_Count,15
+Food_Products_Count,15
+Certifications_Count,10
+Storage_Temperature_Options,5
+Barrier_Properties_Count,4
+Market_States_Count,4
+GST_Categories,3 (18%, 12%, No)
+Indian_Standards_Count,5 (BIS, ISI, FSSAI, Both, None)
+Thickness_Range_Micrometers,15-250
+Shelf_Life_Range_Days,30-365
+Moisture_Barrier_Range,5-150 g/m²/day
+Oxygen_Barrier_Range,1-300 cc/m²/day
+Processing_Temperature_Range,120-280°C
+Density_Range,0.90-1.40 g/cm³
+Biodegradation_Time_Range,30-1095 days
+Water_Absorption_Range,0.5-25%
+Thermal_Stability_Range,150-250°C
+Environmental_Impact_Score_Range,20-95
+Date_Range_Testing,"Within last 2 years"
+Data_Quality_Score,100%
+Use_Cases,"Material Recommendation, Cost Optimization, Compliance Verification, Regional Supplier Matching, Sustainability Scoring, Agricultural Applications"
+Recommended_ML_Tasks,"Regression (biodegradability prediction), Recommendation Systems, Multi-objective Ranking, Classification (material category), Clustering (similar materials)"
+Compatible_Frameworks,"Python (Pandas, Scikit-learn, PyTorch, TensorFlow), R (data.table, dplyr, caret), Excel, Google Sheets"
+Last_Updated,2025-12-31
+Version,1.0
+Status,Ready for ML Training
+Download_Instructions,"1. Download Eco_Friendly_Materials_India_Adapted_9000_Records.xlsx from repository. 2. Load in Python with pd.read_excel() or in Excel/Google Sheets directly. 3. Refer to Feature_Dictionary sheet for field descriptions. 4. Use Dataset_Guide.md for workflow examples."
