@@ -4,13 +4,16 @@ import joblib
 import psycopg2
 
 # =========================
-# LOAD MODELS
+# LOAD MODELS & ENCODERS
 # =========================
 
 rf_model = joblib.load("src/models/cost_model.pkl")
 xgb_model = joblib.load("src/models/co2_model.pkl")
 scaler = joblib.load("src/models/scaler.pkl")
-label_encoder = joblib.load("src/models/label_encoder.pkl")
+
+le_packaging = joblib.load("src/models/label_encoder.pkl")
+le_category = joblib.load("src/models/category_encoder.pkl")
+le_shipping = joblib.load("src/models/shipping_encoder.pkl")
 
 # =========================
 # LOAD MATERIALS FROM DB
@@ -23,9 +26,7 @@ def load_materials_from_db():
         user="postgres",
         password="boorgir"
     )
-
-    query = "SELECT * FROM materials;"
-    df = pd.read_sql(query, conn)
+    df = pd.read_sql("SELECT * FROM materials;", conn)
     conn.close()
     return df
 
@@ -42,20 +43,68 @@ def normalize(series):
 # MAIN FUNCTION
 # =========================
 
-def get_recommendations(distance, packaging_type):
+def get_recommendations(
+    distance,
+    packaging_type,
+    category,
+    weight,
+    volumetric_weight,
+    fragility,
+    moisture,
+    shipping_mode
+):
 
-    # Encode packaging type
+    # =========================
+    # ENCODE CATEGORICAL INPUTS
+    # =========================
+
     try:
-        packaging_encoded = label_encoder.transform([packaging_type])[0]
+        packaging_encoded = le_packaging.transform([packaging_type])[0]
     except:
         packaging_encoded = 0
 
+    try:
+        category_encoded = le_category.transform([category])[0]
+    except:
+        category_encoded = 0
+
+    try:
+        shipping_encoded = le_shipping.transform([shipping_mode])[0]
+    except:
+        shipping_encoded = 0
+
+    # =========================
+    # BUILD FEATURE VECTOR (8 FEATURES)
+    # =========================
+
     user_input = pd.DataFrame(
-        [[distance, packaging_encoded]],
-        columns=["Distance_km", "Packaging_Used_Encoded"]
+        [[
+            distance,
+            weight,
+            volumetric_weight,
+            fragility,
+            moisture,
+            category_encoded,
+            shipping_encoded,
+            packaging_encoded
+        ]],
+        columns=[
+            "Distance_km",
+            "Weight_kg",
+            "Volumetric_Weight_kg",
+            "Fragility",
+            "Moisture_Sens",
+            "Category_Encoded",
+            "Shipping_Mode_Encoded",
+            "Packaging_Used_Encoded"
+        ]
     )
 
     user_input_scaled = scaler.transform(user_input)
+
+    # =========================
+    # ML PREDICTIONS
+    # =========================
 
     base_cost = rf_model.predict(user_input_scaled)[0]
     base_co2 = xgb_model.predict(user_input_scaled)[0]
@@ -63,14 +112,12 @@ def get_recommendations(distance, packaging_type):
     temp_df = materials_df.copy()
 
     # =========================
-    # MATERIAL-AWARE ADJUSTMENT
+    # MATERIAL-ADJUSTED IMPACT
     # =========================
 
-    # Use engineered indices instead of raw cost_per_kg
     temp_df["Adjusted_Cost"] = base_cost * (1 - temp_df["cost_efficiency_index"])
     temp_df["Adjusted_CO2"] = base_co2 * temp_df["co2_impact_index"]
 
-    # Normalize
     temp_df["Cost_Score"] = 1 - normalize(temp_df["Adjusted_Cost"])
     temp_df["CO2_Score"] = 1 - normalize(temp_df["Adjusted_CO2"])
 

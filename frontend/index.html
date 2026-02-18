@@ -8,29 +8,65 @@
 <body>
 
 <div class="container mt-5">
-    <h2 class="text-center mb-4">EcoPackAI Material Recommendation</h2>
+    <h2 class="text-center mb-4">EcoPackAI – Sustainable Packaging Recommendation</h2>
 
-    <div class="card p-4 shadow">
-        <div class="mb-3">
-            <label class="form-label">Shipping Distance (km)</label>
-            <input type="number" id="distance" class="form-control" placeholder="Enter distance">
+    <div class="card p-4 shadow-lg">
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Shipping Distance (km)</label>
+                <input type="number" id="distance" class="form-control" placeholder="Enter distance">
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Product Category</label>
+                <input type="text" id="category" class="form-control" placeholder="e.g. Electronics, Food">
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Weight (kg)</label>
+                <input type="number" id="weight" class="form-control" placeholder="Enter weight">
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Volumetric Weight (kg)</label>
+                <input type="number" id="volumetric_weight" class="form-control" placeholder="Enter volumetric weight">
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Fragility (0 = Low, 1 = High)</label>
+                <input type="number" id="fragility" class="form-control" placeholder="0 or 1">
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Moisture Sensitivity (0 = No, 1 = Yes)</label>
+                <input type="number" id="moisture" class="form-control" placeholder="0 or 1">
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Shipping Mode</label>
+                <input type="text" id="shipping_mode" class="form-control" placeholder="e.g. Air, Ground">
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Packaging Type</label>
+                <input type="text" id="packaging" class="form-control" placeholder="Enter packaging type">
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">Packaging Type</label>
-            <input type="text" id="packaging" class="form-control" placeholder="Enter packaging type (e.g. Electronics)">
-        </div>
+        <button class="btn btn-success w-100 mt-3" onclick="getRecommendation()">Get Recommendations</button>
 
-        <button class="btn btn-primary w-100" onclick="getRecommendation()">Get Recommendations</button>
     </div>
 
     <div class="mt-5">
         <h4>Top Recommended Materials</h4>
-        <table class="table table-bordered mt-3">
+        <table class="table table-bordered table-hover mt-3 text-center">
             <thead class="table-dark">
                 <tr>
                     <th>Material Name</th>
                     <th>Ranking Score</th>
+                    <th>Estimated Cost</th>
+                    <th>Estimated CO₂</th>
                 </tr>
             </thead>
             <tbody id="resultTable"></tbody>
