@@ -1,0 +1,220 @@
+import pandas as pd
+
+# Load datasets
+materials_df = pd.read_excel("data/materials_database_600.xlsx")
+history_df = pd.read_excel("data/real_packaging_history.xlsx")
+
+# View first rows
+print(materials_df.head())
+print(history_df.head())
+
+# =========================
+# DATA CLEANING - STEP 1
+# =========================
+
+print("\nMissing values in history dataset:")
+print(history_df.isnull().sum())
+
+
+# =========================
+# DATA CLEANING - STEP 2
+# Handle Missing Values
+# =========================
+
+# Fill missing numerical values with mean
+numerical_cols = [
+    'Distance_km',
+    'Cost_USD',
+    'CO2_Emission_kg'
+]
+
+
+for col in numerical_cols:
+    history_df[col].fillna(history_df[col].mean(), inplace=True)
+
+# Fill missing categorical values with mode
+history_df['Packaging_Used'].fillna(
+    history_df['Packaging_Used'].mode()[0], inplace=True
+)
+
+print("\nMissing values after cleaning:")
+print(history_df.isnull().sum())
+
+
+# =========================
+# DATA CLEANING - STEP 3
+# Remove duplicate rows
+# =========================
+
+# Count duplicates before removal
+duplicates_before = history_df.duplicated().sum()
+print(f"\nDuplicate rows before removal: {duplicates_before}")
+
+# Remove duplicates
+history_df.drop_duplicates(inplace=True)
+
+# Count duplicates after removal
+duplicates_after = history_df.duplicated().sum()
+print(f"Duplicate rows after removal: {duplicates_after}")
+
+
+# =========================
+# DATA CLEANING - STEP 4
+# Basic data validation
+# =========================
+
+# Check for negative values
+print("\nNegative value check:")
+
+print("Negative Distance_km:", (history_df['Distance_km'] < 0).sum())
+print("Negative Cost_USD:", (history_df['Cost_USD'] < 0).sum())
+print("Negative CO2_Emission_kg:", (history_df['CO2_Emission_kg'] < 0).sum())
+
+
+
+# =========================
+# MATERIALS DATASET CLEANING
+# STEP 1: Check missing values
+# =========================
+
+print("\nMissing values in materials dataset:")
+print(materials_df.isnull().sum())
+
+
+# =========================
+# MATERIALS DATASET CLEANING
+# STEP 2: Handle missing values
+# =========================
+
+# Fill missing numerical values with mean
+material_numerical_cols = [
+    'Density_kg_m3',
+    'Tensile_Strength_MPa',
+    'CO2_Emission_kg',
+    'Cost_per_kg'
+]
+
+for col in material_numerical_cols:
+    materials_df[col].fillna(materials_df[col].mean(), inplace=True)
+
+# Fill missing categorical values with mode
+materials_df['Category'].fillna(
+    materials_df['Category'].mode()[0], inplace=True
+)
+
+materials_df['Biodegradable'].fillna(
+    materials_df['Biodegradable'].mode()[0], inplace=True
+)
+
+print("\nMissing values in materials dataset after cleaning:")
+print(materials_df.isnull().sum())
+
+
+
+# =========================
+# MATERIALS DATASET CLEANING
+# STEP 3: Encode categorical values
+# =========================
+
+# Encode Biodegradable: Yes -> 1, No -> 0
+materials_df['Biodegradable'] = materials_df['Biodegradable'].map({
+    'Yes': 1,
+    'No': 0
+})
+
+# Encode Category using label encoding
+materials_df['Category_Encoded'] = materials_df['Category'].astype('category').cat.codes
+
+# Display encoded columns
+print("\nEncoded materials dataset preview:")
+print(materials_df[['Category', 'Category_Encoded', 'Biodegradable']].head())
+
+
+
+# =========================
+# FEATURE ENGINEERING
+# STEP 1: CO2 Impact Index
+# =========================
+
+# Normalize CO2 emissions (0 to 1 scale)
+materials_df['CO2_Emission_Normalized'] = (
+    materials_df['CO2_Emission_kg'] - materials_df['CO2_Emission_kg'].min()
+) / (
+    materials_df['CO2_Emission_kg'].max() - materials_df['CO2_Emission_kg'].min()
+)
+
+# CO2 Impact Index
+# Higher value = worse environmental impact
+materials_df['CO2_Impact_Index'] = (
+    materials_df['CO2_Emission_Normalized'] * (1 - materials_df['Biodegradable'])
+)
+
+# Preview
+print("\nCO2 Impact Index preview:")
+print(materials_df[['CO2_Emission_kg', 'Biodegradable', 'CO2_Impact_Index']].head())
+
+
+# =========================
+# FEATURE ENGINEERING
+# STEP 2: Cost Efficiency Index
+# =========================
+
+# Normalize Cost_per_kg (lower cost = better)
+materials_df['Cost_Normalized'] = (
+    materials_df['Cost_per_kg'] - materials_df['Cost_per_kg'].min()
+) / (
+    materials_df['Cost_per_kg'].max() - materials_df['Cost_per_kg'].min()
+)
+
+# Normalize Tensile_Strength_MPa (higher strength = better)
+materials_df['Strength_Normalized'] = (
+    materials_df['Tensile_Strength_MPa'] - materials_df['Tensile_Strength_MPa'].min()
+) / (
+    materials_df['Tensile_Strength_MPa'].max() - materials_df['Tensile_Strength_MPa'].min()
+)
+
+# Cost Efficiency Index
+# Higher value = more cost efficient
+materials_df['Cost_Efficiency_Index'] = (
+    materials_df['Strength_Normalized'] * (1 - materials_df['Cost_Normalized'])
+)
+
+# Preview
+print("\nCost Efficiency Index preview:")
+print(materials_df[['Cost_per_kg', 'Tensile_Strength_MPa', 'Cost_Efficiency_Index']].head())
+
+
+
+# =========================
+# FEATURE ENGINEERING
+# STEP 3: Material Suitability Score
+# =========================
+
+# Inverse CO2 impact (lower CO2 impact = better)
+materials_df['CO2_Impact_Inverse'] = 1 - materials_df['CO2_Impact_Index']
+
+# Material Suitability Score
+materials_df['Material_Suitability_Score'] = (
+    0.4 * materials_df['CO2_Impact_Inverse'] +
+    0.4 * materials_df['Cost_Efficiency_Index'] +
+    0.2 * materials_df['Strength_Normalized']
+)
+
+# Preview top materials
+print("\nTop 5 materials by suitability score:")
+print(
+    materials_df[['Material_Name', 'Material_Suitability_Score']]
+    .sort_values(by='Material_Suitability_Score', ascending=False)
+    .head()
+)
+
+# =========================
+# SAVE PROCESSED MATERIALS DATA
+# =========================
+
+materials_df.to_excel("data/materials_processed.xlsx", index=False)
+
+print("\nProcessed materials dataset saved successfully.")
+
+
+

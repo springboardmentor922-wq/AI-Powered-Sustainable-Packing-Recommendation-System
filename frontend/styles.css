@@ -1,0 +1,21 @@
+body {
+    background-color: #eef2f7;
+}
+
+h2 {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.table th {
+    text-align: center;
+}
+
+.btn-success {
+    font-weight: bold;
+}
