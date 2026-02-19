@@ -75,7 +75,7 @@ To run this project on your local machine, follow these steps:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/RutujaWaghmare-21/Ecopack-Ai-Optimizer
+git clone https://github.com/springboardmentor922-wq/AI-Powered-Sustainable-Packing-Recommendation-System/tree/AI-EcoPackaging-Rutuja_Waghmare
 ```
 
 ### 2. Install Dependencies
@@ -122,3 +122,4 @@ Please open an issue or submit a pull request.
 ## 📄 License
 
 This project is licensed under the MIT License — see the `LICENSE` file for details.
+
