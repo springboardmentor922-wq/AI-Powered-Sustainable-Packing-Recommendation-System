@@ -65,6 +65,7 @@ It calculates the **Cost vs. Carbon Footprint** trade-off and compares it agains
 
 ### 2. The Analytics Dashboard
 ![Dashboard](assets/dashboard.png)
+![Dashboard](assets/newplot.png)
 
 ---
 
@@ -122,4 +123,5 @@ Please open an issue or submit a pull request.
 ## 📄 License
 
 This project is licensed under the MIT License — see the `LICENSE` file for details.
+
 
