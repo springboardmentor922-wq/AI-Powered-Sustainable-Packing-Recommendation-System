@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EcoPackAI - Sustainable Packaging Advisor</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f6f5;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            width: 420px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.12);
+        }
+
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: #2e8b57;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #256f46;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #1b4d3e;
+            font-weight: bold;
+        }
+
+        #top5{
+            margin-top:15px;
+            text-align:left;
+            padding-left:30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>EcoPackAI</h2>
+    <p>Smart Sustainable Packaging Recommendation</p>
+
+    <select id="category">
+        <option value="Clothing">Clothing</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Food">Food</option>
+        <option value="Cosmetics">Cosmetics</option>
+        <option value="Furniture">Furniture</option>
+    </select>
+
+    <input id="weight" placeholder="Weight (kg)">
+    <input id="length" placeholder="Length (cm)">
+    <input id="width" placeholder="Width (cm)">
+    <input id="height" placeholder="Height (cm)">
+    <input id="fragility" placeholder="Fragility (0-10)">
+    <input id="moisture" placeholder="Moisture Sensitive? (0 or 1)">
+    <input id="distance" placeholder="Shipping Distance (km)">
+
+    <select id="shipping_mode">
+        <option value="Road">Road</option>
+        <option value="Air">Air</option>
+        <option value="Sea">Sea</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="predictPackaging()">Predict Packaging Impact</button>
+
+    <div id="result"></div>
+
+    <hr>
+
+    <h2 id="material"></h2>
+    <h3 id="cost"></h3>
+    <h3 id="co2"></h3>
+
+    <div id="top5"></div>
+
+</div>
+
+<!-- IMPORTANT: JS must be at bottom -->
+<script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+
+</body>
+</html>

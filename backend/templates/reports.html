@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🌿EcoPackAI Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body style="background:#f2f6f5; font-family:Arial;">
+
+<div style="width:700px; margin:auto; background:white; padding:30px; margin-top:40px; border-radius:10px;">
+
+    <h2 style="color:#2e8b57;">EcoPackAI Sustainability Report</h2>
+    <hr>
+
+    <h3>Recommended Material</h3>
+    <p id="material"></p>
+
+    <h3>Predicted Cost</h3>
+    <p id="cost"></p>
+
+    <h3>CO₂ Emission</h3>
+    <p id="co2"></p>
+
+    <h3>Top 5 Materials</h3>
+    <ul id="top5"></ul>
+
+    <br>
+
+    <button onclick="downloadPDF()" style="padding:12px 20px; background:#2e8b57; color:white; border:none; border-radius:6px;">
+        Download PDF Report
+    </button>
+
+</div>
+
+<script>
+const data = JSON.parse(localStorage.getItem("eco_result"));
+
+document.getElementById("material").innerText = data.recommended_material;
+document.getElementById("cost").innerText = "$" + data.predicted_cost_usd;
+document.getElementById("co2").innerText = data.predicted_co2_kg + " kg";
+
+let list="";
+data.top_5_materials.forEach(m=>{
+    list += `<li>${m.Material_Type} — ${Math.round(m.Confidence*100)}%</li>`;
+});
+document.getElementById("top5").innerHTML=list;
+
+function downloadPDF(){
+    fetch("/download-report",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(data)
+    }).then(res=>res.blob())
+      .then(blob=>{
+        const url=window.URL.createObjectURL(blob);
+        const a=document.createElement("a");
+        a.href=url;
+        a.download="EcoPackAI_Report.pdf";
+        a.click();
+      });
+}
+</script>
+
+</body>
+</html>

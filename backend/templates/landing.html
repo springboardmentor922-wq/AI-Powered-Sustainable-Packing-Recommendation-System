@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EcoPackAI</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+body{
+    margin:0;
+    font-family:Segoe UI, Arial;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+}
+
+/* NAVBAR */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 60px;
+}
+
+.logo{
+    font-size:26px;
+    font-weight:bold;
+    color:#4ade80;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:16px;
+}
+
+/* HERO SECTION */
+.hero{
+    height:80vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:48px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:20px;
+    width:700px;
+    max-width:90%;
+    opacity:0.9;
+}
+
+.start-btn{
+    margin-top:40px;
+    padding:15px 30px;
+    background:#22c55e;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.start-btn:hover{
+    background:#16a34a;
+    transform:scale(1.05);
+}
+
+/* FEATURES */
+.features{
+    background:white;
+    color:#222;
+    padding:60px 20px;
+    text-align:center;
+}
+
+.features h2{
+    margin-bottom:40px;
+}
+
+.feature-boxes{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.box{
+    width:260px;
+    background:#f3f4f6;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">🌿EcoPackAI</div>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/predict-page">Get Recommendation</a>
+        <a href="/dashboard">Analytics</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>AI-Powered Sustainable Packaging</h1>
+    <p>
+        EcoPackAI helps businesses choose eco-friendly packaging materials
+        by predicting cost, carbon emissions, and optimal materials
+        using machine learning and sustainability analytics.
+    </p>
+
+    <button class="start-btn" onclick="location.href='/predict-page'">
+        Start Recommendation
+    </button>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+    <h2>What EcoPackAI Does</h2>
+
+    <div class="feature-boxes">
+        <div class="box">
+            <h3>Material Recommendation</h3>
+            <p>AI selects the best packaging material based on product properties.</p>
+        </div>
+
+        <div class="box">
+            <h3>Cost Prediction</h3>
+            <p>Predicts packaging cost before shipping the product.</p>
+        </div>
+
+        <div class="box">
+            <h3>CO₂ Analysis</h3>
+            <p>Estimates environmental impact and carbon emission.</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

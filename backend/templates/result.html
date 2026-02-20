@@ -1,0 +1,292 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EcoPackAI - Recommendation Result</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+body{
+    margin:0;
+    font-family:Segoe UI;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+}
+
+/* NAVBAR */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    padding:18px 50px;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    color:#4ade80;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+}
+
+/* RESULT CARD */
+.container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+.card{
+    background:white;
+    color:black;
+    padding:35px;
+    width:900px;
+    border-radius:14px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.35);
+}
+
+/* Header layout */
+.result-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.result-header h1{
+    margin:0;
+    color:#15803d;
+}
+
+/* Download button */
+.report-btn{
+    background:#22c55e;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    font-size:14px;
+    cursor:pointer;
+    transition:0.25s;
+    font-weight:600;
+}
+
+.report-btn:hover{
+    background:#16a34a;
+    transform:scale(1.05);
+}
+
+/* Metrics */
+.metric{
+    display:flex;
+    justify-content:space-around;
+    margin-top:25px;
+    margin-bottom:20px;
+}
+
+.box{
+    background:#f1f5f9;
+    padding:15px 25px;
+    border-radius:10px;
+    text-align:center;
+    width:30%;
+}
+
+/* FLASH CARD GRID */
+.card-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-top:20px;
+}
+
+/* FLASH CARD */
+.flash-card{
+    background: linear-gradient(145deg,#f8fafc,#e2e8f0);
+    border-radius:14px;
+    padding:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    transition: all 0.35s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.flash-card:hover{
+    transform: translateY(-10px) scale(1.03);
+    box-shadow:0 25px 50px rgba(0,0,0,0.25);
+}
+
+/* material name */
+.material-title{
+    font-size:18px;
+    font-weight:700;
+    color:#065f46;
+    margin-bottom:8px;
+}
+
+/* confidence badge */
+.badge{
+    position:absolute;
+    top:12px;
+    right:12px;
+    background:#22c55e;
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+}
+
+/* details */
+.detail{
+    margin-top:10px;
+    font-size:14px;
+    color:#1f2937;
+}
+
+/* eco bar */
+.eco-bar{
+    height:8px;
+    background:#cbd5e1;
+    border-radius:10px;
+    margin-top:12px;
+    overflow:hidden;
+}
+
+.eco-fill{
+    height:100%;
+    background:linear-gradient(90deg,#22c55e,#4ade80);
+    border-radius:10px;
+}
+
+/* explanation */
+.explain{
+    background:#ecfdf5;
+    border-left:5px solid #22c55e;
+    padding:15px;
+    margin-top:25px;
+    border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="logo">🌿EcoPackAI</div>
+    <div>
+        <a href="/">Home</a>
+        <a href="/predict-page">New Prediction</a>
+        <a href="/dashboard">Analytics</a>
+    </div>
+</div>
+
+<div class="container">
+<div class="card">
+
+    <!-- HEADER -->
+    <div class="result-header">
+        <h1 id="material">Loading...</h1>
+        <button class="report-btn" onclick="window.location.href='/report'">
+            View & Download Report
+        </button>
+    </div>
+
+    <!-- METRICS -->
+    <div class="metric">
+        <div class="box">
+            <h3>Cost</h3>
+            <p id="cost"></p>
+        </div>
+
+        <div class="box">
+            <h3>CO₂ Emission</h3>
+            <p id="co2"></p>
+        </div>
+
+        <div class="box">
+            <h3>AI Confidence</h3>
+            <p id="confidence"></p>
+        </div>
+    </div>
+
+    <h2>Top 5 Suitable Materials</h2>
+    <p style="color:#475569;margin-top:-10px">
+    AI ranked these materials based on protection efficiency, cost optimization, and environmental sustainability.
+    </p>
+
+    <div id="top5" class="card-grid"></div>
+
+    <!-- EXPLANATION -->
+    <div class="explain">
+        <h3>Why this material?</h3>
+        <p id="explanation"></p>
+    </div>
+
+</div>
+</div>
+
+<script>
+
+const data = JSON.parse(localStorage.getItem("eco_result"));
+
+/* MAIN RESULT */
+document.getElementById("material").innerText =
+"Recommended Material: " + data.recommended_material;
+
+document.getElementById("cost").innerText =
+"$" + data.predicted_cost_usd;
+
+document.getElementById("co2").innerText =
+parseFloat(data.predicted_co2_kg).toFixed(2) + " kg";
+
+document.getElementById("confidence").innerText =
+(Math.round(data.top_5_materials[0].Confidence * 100)) + "%";
+
+/* FLASH CARDS */
+let cards = "";
+
+data.top_5_materials.forEach(m => {
+
+    const confidence = Math.round(m.Confidence * 100);
+
+    let ecoScore = 100 - (data.predicted_co2_kg * 5);
+    if(ecoScore < 10) ecoScore = 10;
+    if(ecoScore > 100) ecoScore = 100;
+
+    cards += `
+    <div class="flash-card">
+
+        <div class="badge">${confidence}% Match</div>
+
+        <div class="material-title">${m.Material_Type}</div>
+
+        <div class="detail"><b>Estimated Cost:</b> $${data.predicted_cost_usd}</div>
+        <div class="detail"><b>CO₂ Emission:</b> ${parseFloat(data.predicted_co2_kg).toFixed(2)} kg</div>
+
+        <div class="detail"><b>Eco Score:</b></div>
+        <div class="eco-bar">
+            <div class="eco-fill" style="width:${ecoScore}%"></div>
+        </div>
+
+    </div>
+    `;
+});
+
+document.getElementById("top5").innerHTML = cards;
+
+/* EXPLANATION */
+document.getElementById("explanation").innerText =
+"This material was selected because its strength, moisture resistance, and handling safety best match the product's fragility, shipping distance, and sustainability requirements. The AI evaluated all materials in the dataset and selected the best balance between protection, cost, and carbon emissions.";
+
+</script>
+
+</body>
+</html>
+

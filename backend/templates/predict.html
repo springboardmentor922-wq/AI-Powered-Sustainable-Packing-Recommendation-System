@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EcoPackAI - Get Recommendation</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+body{
+    margin:0;
+    font-family:Segoe UI;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+}
+
+/* NAVBAR */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    padding:18px 50px;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    color:#4ade80;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+}
+
+/* FORM CARD */
+.container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:90vh;
+}
+
+.card{
+    background:white;
+    color:black;
+    padding:35px;
+    width:420px;
+    border-radius:12px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+}
+
+.card h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+input, select{
+    width:100%;
+    padding:11px;
+    margin:8px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    margin-top:15px;
+    background:#22c55e;
+    border:none;
+    color:white;
+    font-size:16px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#16a34a;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">🌿EcoPackAI</div>
+    <div>
+        <a href="/">Home</a>
+        <a href="/dashboard">Analytics</a>
+    </div>
+</div>
+
+<div class="container">
+<div class="card">
+
+<h2>Product Packaging Details</h2>
+
+<select id="category">
+    <option>Clothing</option>
+    <option>Electronics</option>
+    <option>Food</option>
+    <option>Cosmetics</option>
+    <option>Furniture</option>
+</select>
+
+<input id="weight" placeholder="Weight (kg)">
+<input id="length" placeholder="Length (cm)">
+<input id="width" placeholder="Width (cm)">
+<input id="height" placeholder="Height (cm)">
+<input id="fragility" placeholder="Fragility (0-10)">
+<input id="moisture" placeholder="Moisture Sensitive (0 or 1)">
+<input id="distance" placeholder="Shipping Distance (km)">
+
+<select id="shipping_mode">
+    <option>Road</option>
+    <option>Air</option>
+    <option>Sea</option>
+</select>
+
+<button onclick="predict()">Get AI Recommendation</button>
+
+</div>
+</div>
+
+<script>
+async function predict(){
+
+    const data={
+        category:document.getElementById("category").value,
+        shipping_mode:document.getElementById("shipping_mode").value,
+        weight:document.getElementById("weight").value,
+        length:document.getElementById("length").value,
+        width:document.getElementById("width").value,
+        height:document.getElementById("height").value,
+        fragility:document.getElementById("fragility").value,
+        moisture:document.getElementById("moisture").value,
+        distance:document.getElementById("distance").value
+    };
+
+    const res=await fetch("/predict",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(data)
+    });
+
+    const result=await res.json();
+
+    // store result temporarily in browser
+    localStorage.setItem("eco_result",JSON.stringify(result));
+
+    // redirect to results page
+    window.location.href="/result";
+}
+</script>
+
+</body>
+</html>

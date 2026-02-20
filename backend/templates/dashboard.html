@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>EcoPackAI Analytics</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Segoe UI;
+    background:linear-gradient(180deg,#e6f4ea,#d1fae5);
+    overflow:hidden;
+}
+
+/* HEADER */
+.header{
+    background:linear-gradient(90deg,#064e3b,#065f46);
+    color:white;
+    padding:18px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    color:#4ade80;
+}
+.nav button{
+    margin-left:12px;
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    background:#065f46;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.25s;
+}
+.nav button:hover{
+    background:#22c55e;
+    transform:scale(1.05);
+}
+/* MAIN CONTAINER */
+.main{
+    height:calc(100vh - 70px);
+    overflow-y:auto;
+    padding:20px 30px;
+}
+
+/* KPI */
+.kpis{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.kpi{
+    background:white;
+    padding:20px;
+    border-radius:16px;
+    text-align:center;
+    box-shadow:0 8px 18px rgba(0,0,0,0.08);
+}
+
+.kpi h1{
+    margin:0;
+    color:#059669;
+    font-size:34px;
+}
+
+/* Charts */
+.charts{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(450px,1fr));
+    gap:25px;
+}
+
+.chart-box{
+    background:white;
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+canvas{
+    height:320px !important;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo">🌿 EcoPackAI Analytics DashBoard</div>
+    <div class="nav">
+        <button onclick="location.href='/'">Home</button>
+        <button onclick="location.href='/predict-page'">New Prediction</button>
+    </div>
+</div>
+
+<div class="main">
+
+<div class="kpis">
+    <div class="kpi"><h1 id="total"></h1><p>Total Materials</p></div>
+    <div class="kpi"><h1 id="recycle"></h1><p>Avg Recyclability %</p></div>
+    <div class="kpi"><h1 id="cost"></h1><p>Avg Cost Saved</p></div>
+    <div class="kpi"><h1 id="co2"></h1><p>Avg CO₂ Emission</p></div>
+</div>
+
+<div class="charts">
+
+<div class="chart-box">
+<h3>Material Strength (Line)</h3>
+<canvas id="strengthChart"></canvas>
+</div>
+
+<div class="chart-box">
+<h3>Biodegradability (Dot Plot)</h3>
+<canvas id="bioChart"></canvas>
+</div>
+
+<div class="chart-box">
+<h3>Sustainability Score (Bar)</h3>
+<canvas id="sustainChart"></canvas>
+</div>
+
+<div class="chart-box">
+<h3>Weight Capacity (Bubble)</h3>
+<canvas id="bubbleChart"></canvas>
+</div>
+
+<div class="chart-box">
+<h3>Material Efficiency (Pie)</h3>
+<canvas id="effChart"></canvas>
+</div>
+
+<div class="chart-box">
+<h3>Strength vs CO₂ (Radar)</h3>
+<canvas id="radarChart"></canvas>
+</div>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>
